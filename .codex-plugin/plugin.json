@@ -1,0 +1,26 @@
+{
+  "name": "cino-toolkit",
+  "version": "1.0.0",
+  "description": "Reusable review, product-design, video-analysis, planning, programming-tuition, and writing workflows for ChatGPT and Codex.",
+  "author": {
+    "name": "Max Cini"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Cino Toolkit",
+    "shortDescription": "Reusable review, design, video, teaching, and writing workflows",
+    "longDescription": "Six focused skills for critical review, product-design audits, video intelligence, plan interrogation, step-by-step programming tuition, and natural writing.",
+    "developerName": "Max Cini",
+    "category": "Productivity",
+    "capabilities": [
+      "Analysis",
+      "Writing",
+      "Software development"
+    ],
+    "defaultPrompt": [
+      "Critically review this decision and give me an evidence-based verdict.",
+      "Audit this product interface with evidence-backed findings.",
+      "Analyse this video and separate what it shows from what it claims."
+    ]
+  }
+}

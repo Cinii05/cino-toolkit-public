@@ -2,6 +2,15 @@
 
 Public-safe skills-only plugin package for ChatGPT and Codex, published by Max Cini.
 
-This repository contains six reusable workflows for critical review, product-design audits, video analysis, guided planning, step-by-step programming tuition, and natural-writing editing.
+This repository contains six reusable workflows:
+
+- Cino Critical Review
+- Cino Product Design Review
+- Cino Video Intelligence
+- Grill Me
+- Teach Programming Step by Step
+- Unslop
 
 Private company-specific and user-specific workflows are intentionally excluded from this public repository.
+
+The root website also provides public support, privacy, and terms pages for the plugin.
