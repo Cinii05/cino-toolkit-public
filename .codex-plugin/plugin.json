@@ -1,10 +1,22 @@
 {
   "name": "cino-toolkit",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Reusable review, product-design, video-analysis, planning, programming-tuition, and writing workflows for ChatGPT and Codex.",
   "author": {
-    "name": "Max Cini"
+    "name": "Max Cini",
+    "email": "293613553+Cinii05@users.noreply.github.com",
+    "url": "https://github.com/Cinii05"
   },
+  "homepage": "https://cinii05.github.io/cino-toolkit-public/",
+  "repository": "https://github.com/Cinii05/cino-toolkit-public",
+  "keywords": [
+    "review",
+    "product-design",
+    "video-analysis",
+    "planning",
+    "programming",
+    "writing"
+  ],
   "skills": "./skills/",
   "interface": {
     "displayName": "Cino Toolkit",
@@ -13,14 +25,21 @@
     "developerName": "Max Cini",
     "category": "Productivity",
     "capabilities": [
-      "Analysis",
-      "Writing",
-      "Software development"
+      "Interactive",
+      "Read",
+      "Write"
     ],
+    "websiteURL": "https://cinii05.github.io/cino-toolkit-public/",
+    "privacyPolicyURL": "https://cinii05.github.io/cino-toolkit-public/privacy/",
+    "termsOfServiceURL": "https://cinii05.github.io/cino-toolkit-public/terms/",
     "defaultPrompt": [
       "Critically review this decision and give me an evidence-based verdict.",
       "Audit this product interface with evidence-backed findings.",
       "Analyse this video and separate what it shows from what it claims."
-    ]
+    ],
+    "brandColor": "#101828",
+    "composerIcon": "./assets/composer-icon.svg",
+    "logo": "./assets/logo.svg",
+    "screenshots": []
   }
 }
