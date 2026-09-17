@@ -7,8 +7,8 @@
     {
       "name": "cino-toolkit",
       "source": {
-        "source": "local",
-        "path": "."
+        "source": "url",
+        "url": "https://github.com/Cinii05/cino-toolkit-public.git"
       },
       "policy": {
         "installation": "AVAILABLE",
