@@ -1,7 +1,7 @@
 {
   "name": "cino-toolkit",
-  "version": "1.0.2",
-  "description": "Reusable review, product-design, video-analysis, planning, programming-tuition, and writing workflows for ChatGPT and Codex.",
+  "version": "1.1.0",
+  "description": "Reusable review, product-design, video-analysis, planning, programming-tuition, TMC frontend, and writing workflows for ChatGPT and Codex.",
   "author": {
     "name": "Max Cini",
     "email": "293613553+Cinii05@users.noreply.github.com",
@@ -10,8 +10,8 @@
   "skills": "./skills/",
   "interface": {
     "displayName": "Cino Toolkit",
-    "shortDescription": "Reusable review, design, video, teaching, and writing workflows",
-    "longDescription": "Six focused skills for critical review, product-design audits, video intelligence, plan interrogation, step-by-step programming tuition, and natural writing.",
+    "shortDescription": "AI review & workflow tools",
+    "longDescription": "Seven focused skills for critical review, product-design audits, video intelligence, plan interrogation, step-by-step programming tuition, TMC frontend work, and natural writing.",
     "developerName": "Max Cini",
     "category": "Productivity",
     "capabilities": [
@@ -22,7 +22,7 @@
     "defaultPrompt": [
       "Critically review this decision and give me an evidence-based verdict.",
       "Audit this product interface with evidence-backed findings.",
-      "Analyse this video and separate what it shows from what it claims."
+      "Inspect this TMC frontend task using the current authority."
     ],
     "websiteURL": "https://cinii05.github.io/cino-toolkit-public/",
     "privacyPolicyURL": "https://cinii05.github.io/cino-toolkit-public/privacy/",
@@ -40,6 +40,8 @@
     "video-analysis",
     "planning",
     "programming",
+    "tmc",
+    "frontend",
     "writing"
   ]
 }
