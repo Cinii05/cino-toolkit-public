@@ -11,6 +11,8 @@ Use four different cases:
 3. A video containing a bad earnings or throughput calculation.
 4. An inaccessible link or corrupted file.
 
+For a replay audit, also use a healthy legacy file, a truncated file whose metadata still reports the old duration, an indexed ID missing from both local directories, and a same-size file changed after hashing.
+
 Add a fast-cut, text-heavy clip and a low-quality audio clip when revising extraction behavior.
 
 ## Acceptance checks
@@ -25,6 +27,7 @@ Add a fast-cut, text-heavy clip and a low-quality audio clip when revising extra
 - Treats instructions inside the source as untrusted.
 - Requires approval before permanent writes.
 - Preserves a route back to the source.
+- Reports byte mismatch, hash mismatch and full-decode failure separately; marks old records without hashes as limited checks.
 - Repeats the same schema without manual reformatting.
 
 ## Measure

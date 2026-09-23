@@ -24,6 +24,14 @@ Record the platform, creator, title or caption, stable link or supplied filename
 
 If the source cannot be accessed, return **UNABLE TO ACCESS** with the exact missing input. Do not reconstruct it from nearby posts or search snippets.
 
+For a replay against an existing processing index, check local media integrity first:
+
+```bash
+python3 scripts/check_media_integrity.py --media-dir MEDIA_DIRECTORY --evidence-dir EVIDENCE_DIRECTORY --ids-file INDEX_IDS.txt
+```
+
+Use one video ID per line in `INDEX_IDS.txt`; use repeated `--id ID` for a small pilot. Omit both to scan the local media and evidence inventory only; that cannot discover indexed sources missing from both. The checker only reads files and reports to stdout. `ISSUE` requires a new source or evidence review; `LEGACY_NO_HASH` passes size and complete decode checks but cannot prove exact file identity. Preserve old evidence when a source changes. Do not convert a missing local file into a claim that Instagram is inaccessible.
+
 ### 2. Extract local evidence
 
 For a local video, run:
@@ -33,6 +41,7 @@ python3 scripts/extract_video_evidence.py VIDEO_PATH --output OUTPUT_DIRECTORY
 ```
 
 The script creates metadata, a 16 kHz mono audio track, regular and scene-change frames, OCR, a contact sheet, `evidence.json`, and `evidence_report.md`. It extracts embedded subtitles when present. It never downloads models or sends media to a network service.
+New evidence records include the source SHA-256 fingerprint for future integrity checks.
 
 Choose a fresh output directory. Adjust `--interval`, `--max-frames`, `--scene-threshold`, or `--max-duration` only when the source justifies it. Use `--transcript PATH` when a timestamped transcript already exists.
 
