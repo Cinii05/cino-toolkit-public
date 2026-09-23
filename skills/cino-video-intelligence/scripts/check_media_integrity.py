@@ -48,7 +48,9 @@ def inspect(item_id: str, media_dir: Path, evidence_dir: Path, ffmpeg: str, time
             source = record["source"]
             if not isinstance(source, dict) or not isinstance(source.get("filename"), str):
                 raise ValueError("Missing source filename")
-        except (OSError, ValueError, KeyError, TypeError) as error:
+            if type(source.get("size_bytes")) is not int or source["size_bytes"] < 0:
+                raise ValueError("Missing or invalid source size")
+        except (OSError, ValueError, KeyError, TypeError):
             issues.append("INVALID_EVIDENCE")
             source = {}
     filename = source.get("filename")
@@ -117,7 +119,8 @@ def main() -> int:
         ids.update(path.stem for path in media_dir.iterdir()
                    if path.is_file() and path.suffix.lower() in VIDEO_SUFFIXES)
         ids.update(path.parent.name for path in evidence_dir.glob("*/evidence.json"))
-    if not ids or any(not item or "/" in item or "\\" in item or item in {".", ".."}
+    if not ids or any(not item or any(char in item for char in "/\\*?[]")
+                      or item in {".", ".."}
                       for item in ids):
         parser.error("No valid IDs found; use one media ID per line in --ids-file")
     results = [inspect(item_id, media_dir, evidence_dir, ffmpeg, args.timeout)
