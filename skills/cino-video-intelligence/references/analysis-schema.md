@@ -60,7 +60,7 @@ Write the demonstrated workflow as numbered steps. Mark steps that appear to occ
 
 ### 7. Recommended action
 
-Give the smallest useful next step. Name the proposed destination, but do not write permanently until the user approves it.
+Give the smallest useful next step. Name the proposed destination. Write there only if the user has authorised documentation or an update; otherwise present the candidate for review.
 
 ## Arithmetic and commercial claims
 

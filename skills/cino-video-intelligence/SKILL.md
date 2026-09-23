@@ -40,7 +40,7 @@ For a local video, run:
 python3 scripts/extract_video_evidence.py VIDEO_PATH --output OUTPUT_DIRECTORY
 ```
 
-The script creates metadata, a 16 kHz mono audio track, regular and scene-change frames, OCR, a contact sheet, `evidence.json`, and `evidence_report.md`. It extracts embedded subtitles when present. It never downloads models or sends media to a network service.
+The script creates metadata, a 16 kHz mono audio track, regular frames and sampled scene-change frames, OCR, a contact sheet, `evidence.json`, and `evidence_report.md`. It records scene detection failure explicitly. It extracts embedded subtitles when present. It never downloads models or sends media to a network service.
 New evidence records include the source SHA-256 fingerprint for future integrity checks.
 
 Choose a fresh output directory. Adjust `--interval`, `--max-frames`, `--scene-threshold`, or `--max-duration` only when the source justifies it. Use `--transcript PATH` when a timestamped transcript already exists.
@@ -88,7 +88,7 @@ When classification is useful, label the result with the user's relevant project
 
 ### 7. Present a review card
 
-Use the output order in [analysis-schema.md](references/analysis-schema.md). Show the candidate record before any permanent write. If approved, compare it with the existing destination first, then update the correct knowledge document and processing index without creating duplicates.
+Use the output order in [analysis-schema.md](references/analysis-schema.md). If a write is authorised, compare the candidate with the existing destination, then update the correct knowledge document and processing index without creating duplicates. Otherwise show the candidate record for review.
 
 Read [rights-and-safety.md](references/rights-and-safety.md) when the source is private, client-owned, copyrighted, personally identifying, commercially reused, or obtained from a social platform.
 
