@@ -14,6 +14,7 @@ Use four different cases:
 For a replay audit, also use a healthy legacy file, a truncated file whose metadata still reports the old duration, an indexed ID missing from both local directories, and a same-size file changed after hashing.
 
 Add a fast-cut, text-heavy clip and a low-quality audio clip when revising extraction behavior.
+For fast cuts, confirm that the frame limit does not remove coverage of the end of the clip, scene detection reports failures, and scene detection does not write all candidate frames to disk.
 
 ## Acceptance checks
 
