@@ -1,0 +1,14 @@
+interface:
+  display_name: Cino Automation Opportunity Audit
+  short_description: Find and scope worthwhile business automations
+  default_prompt: Use $cino-automation-opportunity-audit to audit this business workflow
+    and recommend the smallest worthwhile automation.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true
