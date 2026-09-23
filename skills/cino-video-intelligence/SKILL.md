@@ -43,13 +43,22 @@ python3 scripts/extract_video_evidence.py VIDEO_PATH --output OUTPUT_DIRECTORY
 The script creates metadata, a 16 kHz mono audio track, regular frames and sampled scene-change frames, OCR, a contact sheet, `evidence.json`, and `evidence_report.md`. It records scene detection failure explicitly. It extracts embedded subtitles when present. It never downloads models or sends media to a network service.
 New evidence records include the source SHA-256 fingerprint for future integrity checks.
 
+For local speech transcription when a trusted `whisper-cli` executable and an existing compatible ggml model are available, run:
+
+```bash
+python3 scripts/extract_video_evidence.py VIDEO_PATH --output FRESH_DIRECTORY \
+  --whisper-model /path/to/ggml-model.bin --whisper-cli /path/to/whisper-cli
+```
+
+This produces `transcript.vtt` with timed cues and records the engine, model filename and hash, language setting, and parsed segments. The script makes no network requests and never downloads a model. Verify the origin of the executable and model before use. A mocked command tests the adapter only; acceptance of spoken findings requires a real speech engine and listening to the original audio. An empty transcript does not prove the clip is silent.
+
 Choose a fresh output directory. Adjust `--interval`, `--max-frames`, `--scene-threshold`, or `--max-duration` only when the source justifies it. Use `--transcript PATH` when a timestamped transcript already exists.
 
 If the script or required local commands are unavailable, use equivalent available tools and disclose the substitution.
 
 ### 3. Produce a time-coded transcript
 
-Use an available speech-to-text capability on the extracted audio. Preserve timestamps and speaker changes where reliable. Mark uncertain words rather than silently repairing them. Distinguish automated speech recognition, creator-supplied captions, embedded subtitles, and OCR text.
+Use the local route above when available, or another authorised speech-to-text capability on the extracted audio. Preserve timestamps and speaker changes where reliable; this local route does not perform speaker diarization. Mark uncertain words rather than silently repairing them. Distinguish automated speech recognition, creator-supplied captions, embedded subtitles, and OCR text.
 
 If no transcription capability is available, continue with frames and on-screen text only when that evidence can answer the request. State that spoken content remains unreviewed. Do not label OCR captions as a complete transcript.
 
