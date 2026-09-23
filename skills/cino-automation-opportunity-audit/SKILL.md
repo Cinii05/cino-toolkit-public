@@ -15,6 +15,7 @@ Find the smallest automation that solves a measured business problem. Do not beg
 - Verify unstable or material claims with current authoritative sources. This includes laws, platform capabilities, product pricing, security requirements, and regulated workflows.
 - Confirm the relevant jurisdiction before making legal, privacy, employment, tax, or sector-specific conclusions. Flag legal questions for qualified review rather than presenting the audit as legal advice.
 - Reject deceptive activity, copying without rights, impersonation, unsafe credential handling, and unsupervised high-impact decisions.
+- Before reporting a secret exposure from OCR or logs, confirm that a plausible value is present rather than only a label. Do not reproduce suspected credentials in the audit.
 - Treat released staff time as capacity, not cash savings, unless the business can remove a real cost or has a measurable plan to reuse that capacity.
 - Keep the first implementation narrow, reversible, observable, and supported by a manual fallback.
 
