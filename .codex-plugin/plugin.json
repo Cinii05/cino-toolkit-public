@@ -1,7 +1,7 @@
 {
   "name": "cino-toolkit",
-  "version": "1.1.0",
-  "description": "Reusable review, product-design, video-analysis, planning, programming-tuition, TMC frontend, and writing workflows for ChatGPT and Codex.",
+  "version": "1.2.0",
+  "description": "Reusable critical review, design, video, automation-audit, planning, programming, TMC frontend, and writing workflows for ChatGPT and Codex.",
   "author": {
     "name": "Max Cini",
     "email": "293613553+Cinii05@users.noreply.github.com",
@@ -11,7 +11,7 @@
   "interface": {
     "displayName": "Cino Toolkit",
     "shortDescription": "AI review & workflow tools",
-    "longDescription": "Seven focused skills for critical review, product-design audits, video intelligence, plan interrogation, step-by-step programming tuition, TMC frontend work, and natural writing.",
+    "longDescription": "Eight focused skills for critical review, product-design audits, video intelligence, business automation audits, plan interrogation, step-by-step programming tuition, TMC frontend work, and natural writing.",
     "developerName": "Max Cini",
     "category": "Productivity",
     "capabilities": [
@@ -42,6 +42,7 @@
     "programming",
     "tmc",
     "frontend",
-    "writing"
+    "writing",
+    "automation"
   ]
 }
