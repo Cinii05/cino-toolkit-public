@@ -11,7 +11,6 @@ import re
 import shutil
 import subprocess
 import sys
-import tempfile
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -71,12 +70,36 @@ def extract_frame(ffmpeg: str, video: Path, timestamp: float, destination: Path)
         raise RuntimeError(f"Frame extraction failed at {format_time(timestamp)}: {result.stderr.strip()}")
 
 
-def find_scene_times(ffmpeg: str, video: Path, threshold: float, temporary_directory: Path) -> list[float]:
-    pattern = temporary_directory / "scene_%05d.jpg"
-    result = run([ffmpeg, "-hide_banner", "-i", str(video), "-vf", f"select='gt(scene,{threshold})',showinfo,scale='min(1280,iw)':-2", "-fps_mode", "vfr", "-q:v", "3", "-y", str(pattern)], check=False)
+def find_scene_times(ffmpeg: str, video: Path, threshold: float) -> tuple[list[float], str]:
+    result = run(
+        [
+            ffmpeg,
+            "-nostdin",
+            "-hide_banner",
+            "-xerror",
+            "-i",
+            str(video),
+            "-vf",
+            f"select='gt(scene,{threshold})',showinfo",
+            "-an",
+            "-f",
+            "null",
+            "-",
+        ],
+        check=False,
+    )
     if result.returncode != 0:
-        return []
-    return [float(value) for value in re.findall(r"pts_time:([0-9.]+)", result.stderr)]
+        return [], "failed"
+    return [float(value) for value in re.findall(r"pts_time:([0-9.]+)", result.stderr)], "complete"
+
+
+def spaced_samples(values: list[float], limit: int) -> list[float]:
+    if len(values) <= limit:
+        return values
+    if limit == 1:
+        return [values[len(values) // 2]]
+    return [values[round(index * (len(values) - 1) / (limit - 1))]
+            for index in range(limit)]
 
 
 def run_ocr(tesseract: str | None, frame: Path) -> tuple[str, str]:
@@ -132,7 +155,7 @@ def make_contact_sheet(frames: list[dict], output_directory: Path) -> str | None
 
 
 def write_markdown(evidence: dict, destination: Path) -> None:
-    lines = ["# Video evidence report", "", f"- Source file: `{evidence['source']['filename']}`", f"- Duration: {evidence['source']['duration_seconds']:.3f} seconds", f"- Audio extraction: {evidence['audio']['status']}", f"- Embedded subtitles: {evidence['embedded_subtitles']['status']}", f"- OCR: {evidence['ocr']['status']}", f"- Speech transcript: {evidence['transcript']['status']}", "", "## Frames", "", "| Time | Type | File | Visible text |", "|---|---|---|---|"]
+    lines = ["# Video evidence report", "", f"- Source file: `{evidence['source']['filename']}`", f"- Duration: {evidence['source']['duration_seconds']:.3f} seconds", f"- Audio extraction: {evidence['audio']['status']}", f"- Scene detection: {evidence['scene_detection']['status']}", f"- Embedded subtitles: {evidence['embedded_subtitles']['status']}", f"- OCR: {evidence['ocr']['status']}", f"- Speech transcript: {evidence['transcript']['status']}", "", "## Frames", "", "| Time | Type | File | Visible text |", "|---|---|---|---|"]
     for frame in evidence["frames"]:
         ocr = frame["ocr_text"].replace("|", "\\|").replace("\n", " ")
         lines.append(f"| {frame['timestamp']} | {frame['type']} | `{frame['file']}` | {ocr} |")
@@ -170,19 +193,28 @@ def main() -> int:
     duration = duration_from_probe(probe)
     if duration > args.max_duration:
         raise RuntimeError(f"Video duration {duration:.1f}s exceeds the configured limit {args.max_duration:.1f}s.")
+    if duration <= 0:
+        raise RuntimeError("The video has no positive duration.")
     audio = extract_audio(ffmpeg, video, output / "audio_16khz_mono.wav")
     subtitles = extract_embedded_subtitles(ffmpeg, probe, video, output / "embedded_subtitles.srt")
-    regular_interval = max(args.interval, duration / max(1, args.max_frames))
-    regular_times = [min(duration - 0.05, index * regular_interval) for index in range(math.ceil(duration / regular_interval)) if index * regular_interval < duration]
-    with tempfile.TemporaryDirectory(prefix="video-scenes-") as temporary:
-        scene_times = find_scene_times(ffmpeg, video, args.scene_threshold, Path(temporary))
+    scene_times, scene_status = find_scene_times(ffmpeg, video, args.scene_threshold)
+    scene_budget = min(len(scene_times), args.max_frames // 3)
+    regular_budget = args.max_frames - scene_budget
+    regular_count = min(regular_budget, max(1, math.ceil(duration / args.interval)))
+    sampling_end = max(0.0, duration - min(0.5, max(0.1, duration * 0.02)))
+    regular_interval = (sampling_end / (regular_count - 1)
+                        if regular_count > 1 else 0.0)
+    regular_times = [index * regular_interval for index in range(regular_count)]
     selected: list[tuple[float, str]] = [(value, "interval") for value in regular_times]
-    for value in scene_times:
+    eligible_scenes = [value for value in scene_times
+                       if value < duration and not any(abs(value - chosen) < 0.75
+                                                       for chosen, _ in selected)]
+    for value in spaced_samples(eligible_scenes, scene_budget):
         if value >= duration or any(abs(value - chosen) < 0.75 for chosen, _ in selected):
             continue
         selected.append((value, "scene"))
     selected.sort(key=lambda item: item[0])
-    selected = selected[: args.max_frames]
+
     frames: list[dict] = []
     ocr_failures = 0
     for index, (timestamp, frame_type) in enumerate(selected, start=1):
@@ -205,7 +237,7 @@ def main() -> int:
         transcript = {"status": "embedded_subtitles", "path": subtitles["path"], "note": f"Use extracted embedded subtitles at `{subtitles['path']}` and label them as subtitles."}
     contact_sheet = make_contact_sheet(frames, output)
     ocr_status = "unavailable" if not tesseract else ("partial" if ocr_failures else "complete")
-    evidence = {"schema_version": "1.0", "created_at": datetime.now(timezone.utc).isoformat(), "source": {"filename": video.name, "path": str(video), "size_bytes": video.stat().st_size, "duration_seconds": round(duration, 3), "probe": probe}, "settings": {"requested_interval_seconds": args.interval, "effective_interval_seconds": round(regular_interval, 3), "max_frames": args.max_frames, "scene_threshold": args.scene_threshold}, "audio": audio, "embedded_subtitles": subtitles, "transcript": transcript, "ocr": {"status": ocr_status, "engine": "tesseract" if tesseract else None}, "contact_sheet": contact_sheet, "frames": frames}
+    evidence = {"schema_version": "1.0", "created_at": datetime.now(timezone.utc).isoformat(), "source": {"filename": video.name, "path": str(video), "size_bytes": video.stat().st_size, "sha256": sha256_file(video), "duration_seconds": round(duration, 3), "probe": probe}, "settings": {"requested_interval_seconds": args.interval, "effective_interval_seconds": round(regular_interval, 3), "max_frames": args.max_frames, "scene_threshold": args.scene_threshold}, "scene_detection": {"status": scene_status, "candidates": len(scene_times), "selected": sum(kind == "scene" for _, kind in selected)}, "audio": audio, "embedded_subtitles": subtitles, "transcript": transcript, "ocr": {"status": ocr_status, "engine": "tesseract" if tesseract else None}, "contact_sheet": contact_sheet, "frames": frames}
     (output / "evidence.json").write_text(json.dumps(evidence, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     write_markdown(evidence, output / "evidence_report.md")
     print(output / "evidence_report.md")
