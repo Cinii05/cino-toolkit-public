@@ -1,0 +1,53 @@
+name: Publish AgentOps Companion v0.1.0
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'starnet/plugins/cino-agentops/v0.1.0/**'
+      - '.github/workflows/publish-agentops-companion-v0.1.0.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Decode canonical package
+        shell: bash
+        run: |
+          set -euo pipefail
+          SRC="starnet/plugins/cino-agentops/v0.1.0/package/cino-agentops-starnet-plugin-0.1.0.zip.b64"
+          OUT="$RUNNER_TEMP/cino-agentops-starnet-plugin-0.1.0.zip"
+          base64 --decode "$SRC" > "$OUT"
+          echo "ZIP=$OUT" >> "$GITHUB_ENV"
+
+      - name: Verify canonical package SHA-256
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "12b93bdb41beaebb5e489671c74e6a4a06e51c22161b9d47ef8e9b7ad718cc03  $ZIP" | sha256sum --check -
+
+      - name: Publish GitHub release asset
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: cino-agentops-companion-v0.1.0
+        run: |
+          set -euo pipefail
+          NOTES="starnet/plugins/cino-agentops/v0.1.0/RELEASE_NOTES.md"
+          ASSET="$ZIP#cino-agentops-starnet-plugin-0.1.0.zip"
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release upload "$TAG" "$ASSET" --clobber
+          else
+            gh release create "$TAG" "$ASSET" \
+              --target "${GITHUB_SHA}" \
+              --title "Cino AgentOps Companion v0.1.0" \
+              --notes-file "$NOTES"
+          fi

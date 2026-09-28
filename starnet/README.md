@@ -23,3 +23,13 @@ See [the v1.0.0 release record](./agentops/v1.0.0/README.md).
 ## Licensing
 
 The v1.0.0 skill package license metadata is currently unspecified. No licence identifier is invented by the registry.
+
+## Companion plugin
+
+**Cino AgentOps Companion v0.1.0** is the observe-only StarNet plugin that records local AgentOps runtime receipts without changing agent authority or decisions.
+
+- Plugin index: `starnet/plugins/cino-agentops/`
+- v0.1.0 source, checksums and install instructions: `starnet/plugins/cino-agentops/v0.1.0/`
+- Public ZIP release: `cino-agentops-companion-v0.1.0`
+
+The plugin is separate from the AgentOps reasoning skills and from the Cino Toolkit ChatGPT/Codex plugin package.

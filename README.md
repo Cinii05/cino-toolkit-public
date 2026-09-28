@@ -28,3 +28,12 @@ This repository also hosts the public **Cino AgentOps Core v1.0.0** StarNet dist
 - Registry documentation: `starnet/README.md`
 
 The AgentOps registry publishes eight core skills plus one internal governor reference, with canonical StarNet package digests for integrity checking.
+
+## StarNet AgentOps Companion
+
+The repository also publishes **Cino AgentOps Companion v0.1.0**, the observe-only runtime telemetry companion for AgentOps Core.
+
+- Plugin source/install/checksums: `starnet/plugins/cino-agentops/v0.1.0/`
+- Plugin index: `starnet/plugins/cino-agentops/`
+
+The release ZIP is published as a GitHub Release asset from the exact canonical package bytes after checksum verification.
