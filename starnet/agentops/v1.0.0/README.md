@@ -1,5 +1,3 @@
-[Reading 40 lines from start (total: 40 lines, 0 remaining)]
-
 # Cino AgentOps Core v1.0.0
 
 Cino AgentOps is a procedural coordination pack for StarNet. It separates planning, source-of-truth checks, routing, repository navigation, test selection, evidence handoff, and skill-governance decisions so agents do not collapse those concerns into one generic workflow.
@@ -40,5 +38,3 @@ See `manifest.json` for the exact public registry entries, package digests, role
 ## Licensing
 
 License metadata is unspecified in v1.0.0. The public registry does not invent a licence identifier.
-
-[executed on device: MSI (9be8527d-5592-425c-8ea9-07536be5a529)]
