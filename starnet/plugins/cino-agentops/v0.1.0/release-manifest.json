@@ -1,0 +1,52 @@
+{
+  "format": "cino-starnet-plugin-release/v1",
+  "id": "cino-agentops",
+  "name": "Cino AgentOps Companion",
+  "version": "0.1.0",
+  "status": "public",
+  "publishedBy": "Cino",
+  "package": {
+    "filename": "cino-agentops-starnet-plugin-0.1.0.zip",
+    "bytes": 2775,
+    "sha256": "12b93bdb41beaebb5e489671c74e6a4a06e51c22161b9d47ef8e9b7ad718cc03",
+    "releaseAssetUrl": "https://github.com/Cinii05/cino-toolkit-public/releases/download/cino-agentops-companion-v0.1.0/cino-agentops-starnet-plugin-0.1.0.zip",
+    "containsTelemetry": false
+  },
+  "runtimeVerification": {
+    "active": true,
+    "pending": false,
+    "findings": [],
+    "starNetMainCodeDigest": "636eba9eddd4e16b3734231b92406cd34e94487698a3dc07eb914cbc8209ac27"
+  },
+  "sourceFiles": [
+    {
+      "path": "source/index.js",
+      "bytes": 3017,
+      "sha256": "636eba9eddd4e16b3734231b92406cd34e94487698a3dc07eb914cbc8209ac27"
+    },
+    {
+      "path": "source/plugin.json",
+      "bytes": 297,
+      "sha256": "a9554fd90d952bd3ddf971601375d25cc07f3dc271547f3a401ea30b83a07f86"
+    },
+    {
+      "path": "source/README.md",
+      "bytes": 817,
+      "sha256": "1d524bbfb2b4b85cd29b06bbd30c6ede036366af9c3d116aa7707937c04a85de"
+    },
+    {
+      "path": "source/assets/icon.svg",
+      "bytes": 1230,
+      "sha256": "fc81c288afe06549be8dc2d69c7696a0e5c95301a0d1281721b95944a06029da"
+    }
+  ],
+  "behavior": {
+    "mode": "observe-only",
+    "network": false,
+    "promptInjection": false,
+    "blocking": false,
+    "authorityChanges": false,
+    "localReceiptPath": "data/runs.jsonl"
+  },
+  "license": ""
+}
