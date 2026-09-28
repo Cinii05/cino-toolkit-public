@@ -1,6 +1,4 @@
-[Reading 87 lines from start (total: 87 lines, 0 remaining)]
-
-﻿{
+{
     "format":  "starnet-skill-registry/v1",
     "name":  "Cino StarNet Registry",
     "skills":  [
@@ -87,5 +85,3 @@
                    }
                ]
 }
-
-[executed on device: MSI (9be8527d-5592-425c-8ea9-07536be5a529)]
