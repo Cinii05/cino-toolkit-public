@@ -1,5 +1,3 @@
-[Reading 46 lines from start (total: 46 lines, 0 remaining)]
-
 ---
 name: "cino-evidence-handoff"
 description: "Relevant at a worker/task completion handoff boundary. REQUIRED: call skill.view for cino-evidence-handoff before composing the handoff. Discovery summary only."
@@ -46,5 +44,3 @@ Next action:
 - none â€” task complete
 
 Fail if it dumps a transcript, invents a next task, omits persistent side effects, exposes secrets, or claims a test/SHA/state not actually verified. Do not emit multiple intermediate handoff summaries.
-
-[executed on device: MSI (9be8527d-5592-425c-8ea9-07536be5a529)]
