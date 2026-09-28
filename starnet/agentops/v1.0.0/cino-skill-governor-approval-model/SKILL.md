@@ -1,5 +1,3 @@
-[Reading 28 lines from start (total: 28 lines, 0 remaining)]
-
 ---
 name: "cino-skill-governor-approval-model"
 description: "StarNet reference adapter for cino-skill-governor. Load only when install, promotion, update, rollback, retirement or another persistence lifecycle decision is material."
@@ -28,5 +26,3 @@ For a requested global third-party install, keep the lifecycle state distinct fr
 
 ## Trial
 A local controlled trial may be authorised separately from global trust. Trial success is evidence for a later promotion request, not promotion itself.
-
-[executed on device: MSI (9be8527d-5592-425c-8ea9-07536be5a529)]
