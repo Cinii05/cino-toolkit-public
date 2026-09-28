@@ -1,5 +1,3 @@
-[Reading 25 lines from start (total: 25 lines, 0 remaining)]
-
 # Cino StarNet Registry
 
 Public StarNet skill registry maintained by Cino.
@@ -25,5 +23,3 @@ See [the v1.0.0 release record](./agentops/v1.0.0/README.md).
 ## Licensing
 
 The v1.0.0 skill package license metadata is currently unspecified. No licence identifier is invented by the registry.
-
-[executed on device: MSI (9be8527d-5592-425c-8ea9-07536be5a529)]
