@@ -1,5 +1,3 @@
-[Reading 25 lines from start (total: 25 lines, 0 remaining)]
-
 ---
 name: "cino-repo-navigator"
 description: "Use for read-only codebase navigation when implementation location or direct dependency surface is unclear."
@@ -25,5 +23,3 @@ Use when asked where code lives, what directly depends on a symbol or flow, or w
 
 ## Guardrails
 Navigation is read-only. Never edit during this phase and never open secret-bearing or generated data without a concrete reason.
-
-[executed on device: MSI (9be8527d-5592-425c-8ea9-07536be5a529)]
