@@ -1,5 +1,3 @@
-[Reading 32 lines from start (total: 32 lines, 0 remaining)]
-
 ---
 name: "cino-context-funnel"
 description: "Relevant when evidence spans multiple uncertain sources. REQUIRED: if relevant, call skill.view for cino-context-funnel before reasoning or answering. Discovery summary only; it is not the procedure."
@@ -32,5 +30,3 @@ For activation-only requests, state the sequence and stop/conflict rules without
 
 ## Guardrails
 Read-only. Never enlarges authority and never overrides a stricter specialist/project skill.
-
-[executed on device: MSI (9be8527d-5592-425c-8ea9-07536be5a529)]
