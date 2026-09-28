@@ -1,6 +1,4 @@
-[Reading 108 lines from start (total: 108 lines, 0 remaining)]
-
-﻿{
+{
     "format":  "cino-agentops-release/v1",
     "name":  "Cino AgentOps Core",
     "version":  "1.0.0",
@@ -108,5 +106,3 @@
                    }
                ]
 }
-
-[executed on device: MSI (9be8527d-5592-425c-8ea9-07536be5a529)]
