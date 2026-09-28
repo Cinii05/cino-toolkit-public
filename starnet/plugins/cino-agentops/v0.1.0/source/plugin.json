@@ -1,0 +1,7 @@
+{
+  "name": "Cino AgentOps Companion",
+  "version": "0.1.0",
+  "description": "Observe-only StarNet companion for Cino AgentOps: activation telemetry, run receipts and side-effect signals. It never grants authority or changes agent decisions.",
+  "main": "index.js",
+  "icon": "assets/icon.svg"
+}
