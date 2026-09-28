@@ -1,5 +1,3 @@
-[Reading 30 lines from start (total: 30 lines, 0 remaining)]
-
 ---
 name: "cino-skill-governor"
 description: "Relevant for reusable skill/toolbox classification or lifecycle change. REQUIRED: call skill.view for cino-skill-governor before deciding. Discovery summary only."
@@ -30,5 +28,3 @@ For a read-only request to inspect a lifecycle path and stop at its approval gat
 
 ## Guardrails
 A successful example is not automatic promotion. A reviewer recommendation is not Human Authority. Skill management never enlarges tool/deployment authority. Record provenance/version and preserve rollback for material changes. If approval is pending or absent, stop before execution; report the unchanged lifecycle state and confirm that no mutation occurred. Distinguish explicitly requested scope from inferred scope, and mark missing candidate metadata as unavailable rather than filling gaps by assumption.
-
-[executed on device: MSI (9be8527d-5592-425c-8ea9-07536be5a529)]
