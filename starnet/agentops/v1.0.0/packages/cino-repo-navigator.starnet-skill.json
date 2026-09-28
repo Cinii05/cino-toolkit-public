@@ -1,0 +1,31 @@
+[Reading 27 lines from start (total: 27 lines, 0 remaining)]
+
+{
+  "format": "open-agent-skill-package/v1",
+  "digest": "de811d6081f1e75e4592f25b6d4dcc372a57b8553421eeb81eb7ceef10148a02",
+  "bytes": 1416,
+  "metadata": {
+    "name": "cino-repo-navigator",
+    "summary": "Relevant for read-only code navigation when implementation location or direct dependencies are unclear. REQUIRED: call skill.view for cino-repo-navigator before navigating. Discovery summary only.",
+    "category": "Cino AgentOps",
+    "requires": [],
+    "platforms": [],
+    "sourceUrl": "",
+    "sourceDigest": "",
+    "sourceFetchedAt": 0,
+    "sourceVersion": "1.0.0",
+    "sourceAuthor": "Cino",
+    "sourceLicense": ""
+  },
+  "files": [
+    {
+      "path": "SKILL.md",
+      "encoding": "base64",
+      "content": "LS0tCm5hbWU6ICJjaW5vLXJlcG8tbmF2aWdhdG9yIgpkZXNjcmlwdGlvbjogIlVzZSBmb3IgcmVhZC1vbmx5IGNvZGViYXNlIG5hdmlnYXRpb24gd2hlbiBpbXBsZW1lbnRhdGlvbiBsb2NhdGlvbiBvciBkaXJlY3QgZGVwZW5kZW5jeSBzdXJmYWNlIGlzIHVuY2xlYXIuIgpjYXRlZ29yeTogIkNpbm8gQWdlbnRPcHMiCnN0YXRlOiAiYWN0aXZlIgpjcmVhdGVkX2J5OiAidXNlciIKc291cmNlX3J1bl9pZDogImUyNjkzYjc5LTY0YWMtNDE3MS04ZmU0LWRhZGFjMWZkNDRjM19za2lsbF9yZXZpZXciCnBpbm5lZDogZmFsc2UKLS0tCgojIENpbm8gUmVwbyBOYXZpZ2F0b3IKCiMjIFRyaWdnZXIKVXNlIHdoZW4gYXNrZWQgd2hlcmUgY29kZSBsaXZlcywgd2hhdCBkaXJlY3RseSBkZXBlbmRzIG9uIGEgc3ltYm9sIG9yIGZsb3csIG9yIHdoZW4gYW4gaW1wbGVtZW50YXRpb24gd29ya2Zsb3cgbmVlZHMgYSBuYXJyb3cgY29kZSBtYXAgYmVmb3JlIGVkaXRpbmcuIERvIG5vdCB1c2Ugd2hlbiB0aGUgZXhhY3QgdGFyZ2V0IGZpbGUvZnVuY3Rpb24gaXMgYWxyZWFkeSBzdXBwbGllZCBhbmQgY2xlYXIuCgojIyBQcm9jZWR1cmUKMS4gU3RhcnQgd2l0aCBzZWFyY2g6IHN5bWJvbCwgcm91dGUsIG1vZGVsLCBBUEkgZmllbGQsIHRlc3QgbmFtZSwgb3IgZGlzdGluY3RpdmUgc3RyaW5nLgoyLiBCdWlsZCBhIHNtYWxsIGNhbmRpZGF0ZSBsaXN0LgozLiBSZWFkIG9ubHkgdGhlIGRlZmluaXRpb24gcGx1cyBkaXJlY3RseSByZWxldmFudCBjYWxsZXJzLCBjb250cmFjdHMvdHlwZXMsIGNvbmZpZ3VyYXRpb24gYW5kIG5lYXJieSB0ZXN0cy4KNC4gRm9sbG93IGRpcmVjdCBlZGdlcyBvbmx5IHVudGlsIHRoZSBxdWVzdGlvbiBpcyBhbnN3ZXJhYmxlLiBQcmVmZXIgY3VycmVudCBhY3RpdmUgY29kZSBvdmVyIGdlbmVyYXRlZCBvdXRwdXQsIGFyY2hpdmVzLCB2ZW5kb3JlZCBjb2RlLCBidWlsZCBhcnRlZmFjdHMsIG9yIHVucmVsYXRlZCBtaWdyYXRpb25zLgo1LiBOYW1lIGNhbmRpZGF0ZSB0ZXN0cyBpZiB1c2VmdWwsIGJ1dCBkbyBub3QgY2hvb3NlIG9yIGV4ZWN1dGUgYSB0ZXN0IHBsYW4gdW5sZXNzIHRlc3Rpbmcgd2FzIHJlcXVlc3RlZCBvciBhbiBpbXBsZW1lbnRhdGlvbiB3b3JrZmxvdyBoYW5kcyBvZmYgdG8gY2luby10ZXN0LXJvdXRlci4KNi4gUmV0dXJuIGEgY29tcGFjdCByZXBvIG1hcDogYWN0aXZlIGZpbGVzLCByZXNwb25zaWJpbGl0eSBvZiBlYWNoLCBkaXJlY3QgZGVwZW5kZW5jeSBlZGdlcywgYW5kIHJlbWFpbmluZyB1bmtub3ducy4KCiMjIEd1YXJkcmFpbHMKTmF2aWdhdGlvbiBpcyByZWFkLW9ubHkuIE5ldmVyIGVkaXQgZHVyaW5nIHRoaXMgcGhhc2UgYW5kIG5ldmVyIG9wZW4gc2VjcmV0LWJlYXJpbmcgb3IgZ2VuZXJhdGVkIGRhdGEgd2l0aG91dCBhIGNvbmNyZXRlIHJlYXNvbi4K",
+      "bytes": 1416,
+      "sha256": "71bdac98a875da3d1ca45cbfb3f697566b9c58e517fb2e4cf9caf870734e21c0"
+    }
+  ]
+}
+
+[executed on device: MSI (9be8527d-5592-425c-8ea9-07536be5a529)]
