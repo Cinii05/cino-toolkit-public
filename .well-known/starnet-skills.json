@@ -1,0 +1,87 @@
+{
+    "format":  "starnet-skill-registry/v1",
+    "name":  "Cino StarNet Registry",
+    "skills":  [
+                   {
+                       "name":  "cino-context-funnel",
+                       "description":  "FIRST coordinator when evidence breadth is uncertain or a request spans multiple evidence classes such as GitHub, Drive and runtime. REQUIRED: load cino-context-funnel before cino-source-of-truth in those broad cases. Do not use for an already-narrow explicit conflict.",
+                       "version":  "1.0.0",
+                       "author":  "Cino",
+                       "license":  "",
+                       "digest":  "b840ebb7daaf9bb9936235340a02a593b1ab1be923ad2f0092174c3c39362cdb",
+                       "sourceUrl":  "https://raw.githubusercontent.com/Cinii05/cino-toolkit-public/main/starnet/agentops/v1.0.0/cino-context-funnel/SKILL.md"
+                   },
+                   {
+                       "name":  "cino-source-of-truth",
+                       "description":  "Use when an authority conflict is already explicit and narrow, or only AFTER cino-context-funnel has narrowed a broad multi-source task. Do not load before cino-context-funnel when evidence breadth is uncertain.",
+                       "version":  "1.0.0",
+                       "author":  "Cino",
+                       "license":  "",
+                       "digest":  "7048c4d3611fae34b709114ad9995666d65bdeb814611b7ba1216f2017e34309",
+                       "sourceUrl":  "https://raw.githubusercontent.com/Cinii05/cino-toolkit-public/main/starnet/agentops/v1.0.0/cino-source-of-truth/SKILL.md"
+                   },
+                   {
+                       "name":  "cino-agent-router",
+                       "description":  "Use for a standalone delegation/routing decision. In an implementation task coordinated by cino-plan-before-build, load only if that coordinator decides delegation is useful; do not precede cino-plan-before-build.",
+                       "version":  "1.0.0",
+                       "author":  "Cino",
+                       "license":  "",
+                       "digest":  "c315c00995a7e2cdded39b175019fa276f2c4c84a9f49ad64ad8998b05b82156",
+                       "sourceUrl":  "https://raw.githubusercontent.com/Cinii05/cino-toolkit-public/main/starnet/agentops/v1.0.0/cino-agent-router/SKILL.md"
+                   },
+                   {
+                       "name":  "cino-repo-navigator",
+                       "description":  "Relevant for read-only code navigation when implementation location or direct dependencies are unclear. REQUIRED: call skill.view for cino-repo-navigator before navigating. Discovery summary only.",
+                       "version":  "1.0.0",
+                       "author":  "Cino",
+                       "license":  "",
+                       "digest":  "de811d6081f1e75e4592f25b6d4dcc372a57b8553421eeb81eb7ceef10148a02",
+                       "sourceUrl":  "https://raw.githubusercontent.com/Cinii05/cino-toolkit-public/main/starnet/agentops/v1.0.0/cino-repo-navigator/SKILL.md"
+                   },
+                   {
+                       "name":  "cino-test-router",
+                       "description":  "Relevant when choosing the smallest sufficient verification or test set. REQUIRED: call skill.view for cino-test-router before selecting tests. Discovery summary only.",
+                       "version":  "1.0.0",
+                       "author":  "Cino",
+                       "license":  "",
+                       "digest":  "63a1aebb2d4d46e387a2ec26d22c14c40d354132734f53fd221e8af5ccfde9ad",
+                       "sourceUrl":  "https://raw.githubusercontent.com/Cinii05/cino-toolkit-public/main/starnet/agentops/v1.0.0/cino-test-router/SKILL.md"
+                   },
+                   {
+                       "name":  "cino-evidence-handoff",
+                       "description":  "ONLY for an explicit worker-to-owner or agent-to-agent completion handoff after work is COMPLETE, BLOCKED, FAILED, or INCOMPLETE EVIDENCE. Do not load for ordinary answers, read-only reconciliation, interim stop points, activation tests, or a task that has not reached a handoff b",
+                       "version":  "1.0.0",
+                       "author":  "Cino",
+                       "license":  "",
+                       "digest":  "50aa352fcecfa7546a8b4cfbd232acadb2f55681ad7d9aeda1945d47d74e2307",
+                       "sourceUrl":  "https://raw.githubusercontent.com/Cinii05/cino-toolkit-public/main/starnet/agentops/v1.0.0/cino-evidence-handoff/SKILL.md"
+                   },
+                   {
+                       "name":  "cino-plan-before-build",
+                       "description":  "PRIMARY generic coordinator for non-trivial implementation when no stricter specialist owns it. REQUIRED: load cino-plan-before-build BEFORE agent-router, repo-navigator or test-router helpers. Do not use for pure routing or pure read-only navigation.",
+                       "version":  "1.0.0",
+                       "author":  "Cino",
+                       "license":  "",
+                       "digest":  "10638f008e01e420a959e9b3ecdebf583f172d1738f024b022a6d69fd166041c",
+                       "sourceUrl":  "https://raw.githubusercontent.com/Cinii05/cino-toolkit-public/main/starnet/agentops/v1.0.0/cino-plan-before-build/SKILL.md"
+                   },
+                   {
+                       "name":  "cino-skill-governor",
+                       "description":  "Relevant for reusable skill/toolbox classification or lifecycle change. REQUIRED: call skill.view for cino-skill-governor before deciding. Discovery summary only.",
+                       "version":  "1.0.0",
+                       "author":  "Cino",
+                       "license":  "",
+                       "digest":  "ffa4a0aef8c0bcf8fc9f1346d1655a0ccbfc7a7cd81affd934c68402e1ecc055",
+                       "sourceUrl":  "https://raw.githubusercontent.com/Cinii05/cino-toolkit-public/main/starnet/agentops/v1.0.0/cino-skill-governor/SKILL.md"
+                   },
+                   {
+                       "name":  "cino-skill-governor-approval-model",
+                       "description":  "INTERNAL REFERENCE ONLY for cino-skill-governor. Do not load directly from the index; load only after the governor procedure explicitly directs you.",
+                       "version":  "1.0.0",
+                       "author":  "Cino",
+                       "license":  "",
+                       "digest":  "499760a4343a3688e51f6cc03cd501b68c90bcd8707dd78ac5e78c8ae6f5c7cc",
+                       "sourceUrl":  "https://raw.githubusercontent.com/Cinii05/cino-toolkit-public/main/starnet/agentops/v1.0.0/cino-skill-governor-approval-model/SKILL.md"
+                   }
+               ]
+}
