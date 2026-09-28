@@ -1,5 +1,3 @@
-[Reading 27 lines from start (total: 27 lines, 0 remaining)]
-
 {
   "format": "open-agent-skill-package/v1",
   "digest": "63a1aebb2d4d46e387a2ec26d22c14c40d354132734f53fd221e8af5ccfde9ad",
@@ -27,5 +25,3 @@
     }
   ]
 }
-
-[executed on device: MSI (9be8527d-5592-425c-8ea9-07536be5a529)]
