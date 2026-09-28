@@ -1,5 +1,3 @@
-[Reading 30 lines from start (total: 30 lines, 0 remaining)]
-
 ---
 name: "cino-test-router"
 description: "Relevant when choosing the smallest sufficient verification or test set. REQUIRED: call skill.view for cino-test-router before selecting tests. Discovery summary only."
@@ -30,5 +28,3 @@ PURE and READ-ONLY are not the same: a read-only check can still contact a share
 
 ## Guardrails
 Never broaden merely for reassurance. Previous implementation approval does not imply permission for shared/live mutation. Load this skill once per stable change surface; do not reload it merely because a command was denied, an environment was busy, or unchanged evidence needs no new routing decision.
-
-[executed on device: MSI (9be8527d-5592-425c-8ea9-07536be5a529)]
