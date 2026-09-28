@@ -1,5 +1,3 @@
-[Reading 29 lines from start (total: 29 lines, 0 remaining)]
-
 ---
 name: "cino-source-of-truth"
 description: "Relevant when sources conflict or authority must be resolved. REQUIRED: if relevant, call skill.view for cino-source-of-truth before reasoning or answering. Discovery summary only."
@@ -29,5 +27,3 @@ Claim; governing authority class; exact source/version; conflicting/stale source
 
 ## Guardrails
 Read-only unless an outer authorised workflow explicitly moves beyond evidence resolution. Cannot grant implementation, push, merge, deploy, publish, install, or production authority.
-
-[executed on device: MSI (9be8527d-5592-425c-8ea9-07536be5a529)]
