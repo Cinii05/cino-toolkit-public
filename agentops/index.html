@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#080817">
+<title>Cino AgentOps — StarNet install</title>
+<meta name="description" content="Install Cino AgentOps Core v1.0.0 in StarNet. Public registry, sealed package digests, and step-by-step discovery instructions.">
+<link rel="icon" href="./assets/cino-agentops.svg" type="image/svg+xml">
+<style>
+:root{
+  color-scheme:dark;
+  --bg:#080817;--panel:#0f1024;--panel2:#141631;--line:#2c2d54;--text:#f5f5ff;--muted:#a8aac7;
+  --indigo:#6654ff;--indigo2:#a99cff;--green:#67e8a5;--shadow:0 30px 90px rgba(0,0,0,.42);
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:
+ radial-gradient(circle at 18% 8%,rgba(102,84,255,.14),transparent 28rem),
+ radial-gradient(circle at 86% 22%,rgba(169,156,255,.08),transparent 24rem),
+ var(--bg);color:var(--text);line-height:1.55}
+a{color:inherit}
+a:focus-visible,button:focus-visible{outline:3px solid var(--indigo2);outline-offset:3px}
+.wrap{width:min(1120px,calc(100% - 40px));margin:auto}
+.site-header{display:flex;align-items:center;justify-content:space-between;padding:24px 0;gap:18px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;font-weight:800;letter-spacing:-.02em}
+.brand img{width:38px;height:38px;border-radius:9px;image-rendering:pixelated}
+nav{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+nav a{color:var(--muted);text-decoration:none;font-size:.94rem}
+nav a:hover{color:var(--text)}
+.hero{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(320px,.88fr);gap:54px;align-items:center;padding:72px 0 88px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;color:#d9d5ff;border:1px solid #3a3774;background:#11122a;border-radius:999px;padding:7px 11px;font-size:.78rem;font-weight:750;letter-spacing:.08em;text-transform:uppercase}
+.dot{width:7px;height:7px;background:var(--green);box-shadow:0 0 14px rgba(103,232,165,.7)}
+h1{font-size:clamp(3.25rem,8vw,6.6rem);line-height:.91;letter-spacing:-.07em;margin:22px 0 24px;max-width:780px}
+.lede{max-width:690px;color:#c7c8de;font-size:clamp(1.08rem,2vw,1.3rem);margin:0 0 30px}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 17px;border-radius:10px;border:1px solid #3b3d68;text-decoration:none;font-weight:760;font-size:.94rem}
+.btn.primary{background:var(--indigo);border-color:var(--indigo);box-shadow:0 12px 34px rgba(102,84,255,.28)}
+.btn.secondary{background:#111329;color:#e5e3ff}
+.btn:hover{transform:translateY(-1px)}
+.hero-card{position:relative;padding:28px;border:1px solid #34365e;background:linear-gradient(180deg,rgba(20,22,49,.96),rgba(12,13,31,.96));border-radius:20px;box-shadow:var(--shadow);overflow:hidden}
+.hero-card:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(102,84,255,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(102,84,255,.055) 1px,transparent 1px);background-size:24px 24px;mask-image:linear-gradient(to bottom,black,transparent 86%);pointer-events:none}
+.hero-card img{width:88px;height:88px;position:relative;z-index:1;image-rendering:pixelated}
+.terminal{position:relative;z-index:1;margin-top:24px;background:#080916;border:1px solid #2a2c4e;border-radius:12px;padding:17px 18px;font:500 .84rem/1.7 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#bbbdec}
+.terminal .ok{color:var(--green)}.terminal .purple{color:#a99cff}.terminal .muted{color:#777b9e}
+.meta-row{position:relative;z-index:1;display:flex;gap:9px;flex-wrap:wrap;margin-top:18px}
+.chip{border:1px solid #353761;border-radius:8px;padding:6px 9px;color:#c9c9df;font-size:.78rem;background:#101126}
+section{padding:74px 0;border-top:1px solid rgba(71,73,115,.48)}
+.section-head{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:end;margin-bottom:34px}
+.kicker{color:var(--indigo2);font-weight:780;font-size:.8rem;text-transform:uppercase;letter-spacing:.09em}
+h2{font-size:clamp(2rem,4vw,3.25rem);letter-spacing:-.045em;line-height:1.03;margin:9px 0 0}
+.section-copy{color:var(--muted);max-width:580px;margin:0}
+.install-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:22px}
+.card{border:1px solid #2d2f55;background:rgba(15,16,36,.88);border-radius:16px;padding:25px}
+.card h3{margin:0 0 8px;font-size:1.04rem;letter-spacing:-.01em}
+.card p{color:var(--muted);margin:0}
+.steps{counter-reset:step;display:grid;gap:14px;margin-top:22px}
+.step{counter-increment:step;display:grid;grid-template-columns:34px 1fr;gap:13px;align-items:start}
+.step:before{content:counter(step);display:grid;place-items:center;width:30px;height:30px;background:#17183b;border:1px solid #454783;color:#dcd8ff;border-radius:7px;font-weight:800;font-size:.83rem}
+.codebox{margin-top:14px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;background:#070812;border:1px solid #33355d;border-radius:10px;padding:8px}
+.codebox code{min-width:0;overflow:auto;white-space:nowrap;padding:8px 9px;color:#d9d6ff;font:.78rem/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.copy{border:0;border-radius:7px;background:#202252;color:#f3f2ff;padding:0 12px;font-weight:740;cursor:pointer}
+.copy:hover{background:#2b2e69}
+.note{display:flex;gap:10px;margin-top:16px;padding:13px;border:1px solid #30325c;border-radius:10px;background:#111229;color:#c7c8dc;font-size:.88rem}
+.note strong{color:white}
+.skill-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.skill{padding:18px;border:1px solid #292b4d;background:#0d0f22;border-radius:12px}
+.skill-name{font:700 .9rem ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#dedbff}
+.skill p{font-size:.88rem;margin-top:8px}
+.integrity{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.metric{padding:22px;border:1px solid #2d2f55;background:#0d0f22;border-radius:14px}
+.metric b{display:block;font-size:1.75rem;letter-spacing:-.04em}
+.metric span{color:var(--muted);font-size:.86rem}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.plain-list{margin:14px 0 0;padding-left:20px;color:#c5c7da}
+.plain-list li+li{margin-top:8px}
+footer{padding:34px 0 46px;color:#8084a4;font-size:.84rem;border-top:1px solid rgba(71,73,115,.48)}
+.footer-row{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.footer-row a{color:#aaaee0}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media (max-width:800px){
+ .site-header{align-items:flex-start}.site-header nav{gap:13px}
+ .hero{grid-template-columns:1fr;gap:34px;padding-top:46px}
+ .hero-card{max-width:620px}
+ .section-head,.install-grid,.split{grid-template-columns:1fr}
+ .skill-grid{grid-template-columns:1fr}
+ .integrity{grid-template-columns:1fr}
+}
+@media (max-width:520px){
+ .wrap{width:min(100% - 26px,1120px)}
+ .site-header{padding-top:17px}
+ nav a:nth-child(2){display:none}
+ h1{font-size:3.25rem}
+ .hero{padding-bottom:62px}
+ section{padding:58px 0}
+ .card{padding:19px}
+ .codebox{grid-template-columns:1fr}
+ .copy{min-height:40px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn:hover{transform:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="site-header">
+  <a class="brand" href="../" aria-label="Cino home"><img src="./assets/cino-agentops.svg" alt=""><span>Cino AgentOps</span></a>
+  <nav aria-label="Primary">
+    <a href="#install">Install</a>
+    <a href="#skills">Skills</a>
+    <a href="https://github.com/Cinii05/cino-toolkit-public/tree/main/starnet/agentops/v1.0.0">Source</a>
+    <a href="https://raw.githubusercontent.com/Cinii05/cino-toolkit-public/main/.well-known/starnet-skills.json">Registry</a>
+  </nav>
+</header>
+
+<main>
+<section class="hero" aria-labelledby="hero-title">
+  <div>
+    <span class="eyebrow"><span class="dot" aria-hidden="true"></span> StarNet-native · v1.0.0</span>
+    <h1 id="hero-title">Agents that know what to do next.</h1>
+    <p class="lede">Cino AgentOps is a compact coordination layer for StarNet: scope the evidence, resolve authority, route work, navigate code, choose the smallest useful test, and hand back proof without blurring the boundaries.</p>
+    <div class="actions">
+      <a class="btn primary" href="#install">Install in StarNet</a>
+      <a class="btn secondary" href="https://github.com/Cinii05/cino-toolkit-public/tree/main/starnet/agentops/v1.0.0">Inspect the exact v1 source</a>
+    </div>
+  </div>
+  <aside class="hero-card" aria-label="AgentOps runtime summary">
+    <img src="./assets/cino-agentops.svg" alt="Cino AgentOps pixel mark">
+    <div class="terminal" aria-label="Example activation sequence">
+      <div><span class="muted">$</span> agentops route --task backend-change</div>
+      <div><span class="purple">01</span> cino-plan-before-build</div>
+      <div><span class="purple">02</span> cino-repo-navigator</div>
+      <div><span class="purple">03</span> cino-test-router</div>
+      <div><span class="purple">04</span> cino-evidence-handoff</div>
+      <div><span class="ok">✓</span> authority gates preserved</div>
+    </div>
+    <div class="meta-row">
+      <span class="chip">8 core skills</span><span class="chip">1 internal reference</span><span class="chip">sealed digests</span>
+    </div>
+  </aside>
+</section>
+
+<section id="install" aria-labelledby="install-title">
+  <div class="section-head">
+    <div><div class="kicker">Install</div><h2 id="install-title">Discover it from the site.</h2></div>
+    <p class="section-copy">Current Cino StarNet builds can discover the registry from this page URL. The direct registry URL is kept as a transparent fallback and for manual inspection.</p>
+  </div>
+  <div class="install-grid">
+    <article class="card">
+      <h3>Automatic StarNet discovery</h3>
+      <p>Use the public site URL in StarNet's Skill Exchange discovery flow.</p>
+      <div class="codebox">
+        <code id="site-url">https://cinii05.github.io/cino-toolkit-public/agentops/</code>
+        <button class="copy" type="button" data-copy="site-url">Copy site URL</button>
+      </div>
+      <div class="steps">
+        <div class="step"><div><strong>Open Skill Exchange → Discover.</strong><p>Use discovery rather than installing unknown bytes directly.</p></div></div>
+        <div class="step"><div><strong>Paste the site URL above.</strong><p>StarNet resolves the page's well-known registry and returns the Cino AgentOps entries.</p></div></div>
+        <div class="step"><div><strong>Inspect before installing.</strong><p>StarNet freezes the fetched bytes, calculates the canonical package digest, runs the skill guard, then installs only the inspected artifact through its normal approval path.</p></div></div>
+      </div>
+      <div class="note"><span aria-hidden="true">◆</span><div><strong>No silent authority expansion.</strong> Installing AgentOps does not grant deployment, account, network, repository, or production permissions that the agent did not already have.</div></div>
+    </article>
+    <aside class="card">
+      <h3>Direct registry fallback</h3>
+      <p>If a StarNet build does not yet support path-aware well-known discovery, add the registry URL directly.</p>
+      <div class="codebox">
+        <code id="registry-url">https://raw.githubusercontent.com/Cinii05/cino-toolkit-public/main/.well-known/starnet-skills.json</code>
+        <button class="copy" type="button" data-copy="registry-url">Copy registry URL</button>
+      </div>
+      <ul class="plain-list">
+        <li>Registry format: <code>starnet-skill-registry/v1</code></li>
+        <li>Release: <strong>Cino AgentOps Core v1.0.0</strong></li>
+        <li>Public entries: 9</li>
+        <li>License metadata: unspecified in v1.0.0</li>
+      </ul>
+    </aside>
+  </div>
+</section>
+
+<section id="skills" aria-labelledby="skills-title">
+  <div class="section-head">
+    <div><div class="kicker">Core pack</div><h2 id="skills-title">Small skills. Clear ownership.</h2></div>
+    <p class="section-copy">Each procedure owns one coordination job. Specialist project skills still take precedence when they fully own a workflow.</p>
+  </div>
+  <div class="skill-grid">
+    <article class="skill"><div class="skill-name">cino-context-funnel</div><p>Narrows broad, multi-source work before authority resolution starts.</p></article>
+    <article class="skill"><div class="skill-name">cino-source-of-truth</div><p>Resolves an explicit authority conflict without pretending every source is equally current.</p></article>
+    <article class="skill"><div class="skill-name">cino-agent-router</div><p>Routes a bounded delegation decision without hijacking a larger implementation workflow.</p></article>
+    <article class="skill"><div class="skill-name">cino-repo-navigator</div><p>Maps the smallest relevant code surface before editing.</p></article>
+    <article class="skill"><div class="skill-name">cino-test-router</div><p>Selects the smallest sufficient verification instead of defaulting to every test.</p></article>
+    <article class="skill"><div class="skill-name">cino-evidence-handoff</div><p>Returns a compact completion receipt only at a genuine handoff boundary.</p></article>
+    <article class="skill"><div class="skill-name">cino-plan-before-build</div><p>Coordinates non-trivial implementation while keeping plan, edit, commit, push, merge and deploy authority separate.</p></article>
+    <article class="skill"><div class="skill-name">cino-skill-governor</div><p>Owns reusable workflow classification and the skill lifecycle, including promotion and rollback.</p></article>
+  </div>
+  <div class="note"><span aria-hidden="true">◇</span><div><strong>Internal reference:</strong> <code>cino-skill-governor-approval-model</code> is published for integrity and dependency resolution, but is intended to be loaded only when the governor reaches a persistence decision.</div></div>
+</section>
+
+<section aria-labelledby="proof-title">
+  <div class="section-head">
+    <div><div class="kicker">Release proof</div><h2 id="proof-title">Public bytes match the accepted v1.</h2></div>
+    <p class="section-copy">The public GitHub sources and exported package envelopes were re-fetched after publication and compared against the registry digests.</p>
+  </div>
+  <div class="integrity">
+    <div class="metric"><b>9 / 9</b><span>public SKILL.md package digests matched</span></div>
+    <div class="metric"><b>9 / 9</b><span>exported envelope digests matched</span></div>
+    <div class="metric"><b>A1–A12</b><span>trigger and precedence acceptance completed before v1 promotion</span></div>
+  </div>
+</section>
+
+<section aria-labelledby="boundaries-title">
+  <div class="section-head">
+    <div><div class="kicker">Boundaries</div><h2 id="boundaries-title">Procedure, not permission.</h2></div>
+    <p class="section-copy">AgentOps helps an agent decide what workflow applies and where to stop. It is deliberately not a back door around the host product's permission model.</p>
+  </div>
+  <div class="split">
+    <article class="card"><h3>What it can do</h3><ul class="plain-list"><li>Coordinate evidence and authority checks.</li><li>Route bounded work.</li><li>Guide repository navigation and verification.</li><li>Require evidence before completion claims.</li><li>Govern the lifecycle of reusable procedures.</li></ul></article>
+    <article class="card"><h3>What it cannot grant</h3><ul class="plain-list"><li>Repository write access.</li><li>Production deployment authority.</li><li>Credentials or account permissions.</li><li>Approval to merge, publish, purchase or message externally.</li><li>Trust in third-party skill bytes without inspection.</li></ul></article>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="footer-row">
+    <span>Cino AgentOps Core v1.0.0 · Published by Cino</span>
+    <span><a href="../privacy/">Privacy</a> · <a href="../terms/">Terms</a> · <a href="https://github.com/Cinii05/cino-toolkit-public/issues">Support</a></span>
+  </div>
+</footer>
+</div>
+<div class="sr-only" aria-live="polite" id="copy-status"></div>
+<script>
+(function(){
+  var status=document.getElementById('copy-status');
+  document.querySelectorAll('[data-copy]').forEach(function(button){
+    button.addEventListener('click',async function(){
+      var source=document.getElementById(button.getAttribute('data-copy'));
+      var value=source.textContent.trim();
+      try{
+        await navigator.clipboard.writeText(value);
+        var old=button.textContent; button.textContent='Copied'; status.textContent='Copied URL to clipboard';
+        setTimeout(function(){button.textContent=old},1400);
+      }catch(e){
+        window.prompt('Copy this URL:',value);
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>
