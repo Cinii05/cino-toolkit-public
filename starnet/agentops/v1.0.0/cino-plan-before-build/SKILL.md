@@ -1,5 +1,3 @@
-[Reading 35 lines from start (total: 35 lines, 0 remaining)]
-
 ---
 name: "cino-plan-before-build"
 description: "Relevant for non-trivial authorised implementation when no stricter specialist owns the workflow. REQUIRED: call skill.view for cino-plan-before-build before planning. Discovery summary only."
@@ -35,5 +33,3 @@ When the user asks for a plan for a class of change (for example, “a non-trivi
 
 ## Guardrails
 Do not load every helper ritualistically. Do not create or update todo/task-tracking state unless the user explicitly asked for it. Do not use generic process to weaken a stricter project rule. Stop at the first unauthorised gate.
-
-[executed on device: MSI (9be8527d-5592-425c-8ea9-07536be5a529)]
