@@ -1,5 +1,3 @@
-[Reading 25 lines from start (total: 25 lines, 0 remaining)]
-
 ---
 name: "cino-agent-router"
 description: "Relevant when deciding whether and how to delegate work by role. REQUIRED: if relevant, call skill.view for cino-agent-router before making the routing decision. Discovery summary only."
@@ -25,5 +23,3 @@ Use when delegation is actually useful or the user asks which worker should do a
 
 ## Guardrails
 Routing does not enlarge authority. A worker inherits at most the caller's allowed scope. Do not hardcode worker or provider/model identities into the procedure.
-
-[executed on device: MSI (9be8527d-5592-425c-8ea9-07536be5a529)]
