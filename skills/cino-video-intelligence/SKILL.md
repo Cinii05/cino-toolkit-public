@@ -24,14 +24,6 @@ Record the platform, creator, title or caption, stable link or supplied filename
 
 If the source cannot be accessed, return **UNABLE TO ACCESS** with the exact missing input. Do not reconstruct it from nearby posts or search snippets.
 
-For a replay against an existing processing index, check local media integrity first:
-
-```bash
-python3 scripts/check_media_integrity.py --media-dir MEDIA_DIRECTORY --evidence-dir EVIDENCE_DIRECTORY --ids-file INDEX_IDS.txt
-```
-
-Use one video ID per line in `INDEX_IDS.txt`; use repeated `--id ID` for a small pilot. Omit both to scan the local media and evidence inventory only; that cannot discover indexed sources missing from both. The checker only reads files and reports to stdout. `ISSUE` requires a new source or evidence review; `LEGACY_NO_HASH` passes size and complete decode checks but cannot prove exact file identity. Preserve old evidence when a source changes. Do not convert a missing local file into a claim that Instagram is inaccessible.
-
 ### 2. Extract local evidence
 
 For a local video, run:
@@ -40,17 +32,7 @@ For a local video, run:
 python3 scripts/extract_video_evidence.py VIDEO_PATH --output OUTPUT_DIRECTORY
 ```
 
-The script creates metadata, a 16 kHz mono audio track, regular frames and sampled scene-change frames, OCR, a contact sheet, `evidence.json`, and `evidence_report.md`. It records scene detection failure explicitly. It extracts embedded subtitles when present. It never downloads models or sends media to a network service.
-New evidence records include the source SHA-256 fingerprint for future integrity checks.
-
-For local speech transcription when a trusted `whisper-cli` executable and an existing compatible ggml model are available, run:
-
-```bash
-python3 scripts/extract_video_evidence.py VIDEO_PATH --output FRESH_DIRECTORY \
-  --whisper-model /path/to/ggml-model.bin --whisper-cli /path/to/whisper-cli
-```
-
-This produces `transcript.vtt` with timed cues and records the engine, model filename and hash, language setting, and parsed segments. The script makes no network requests and never downloads a model. Verify the origin of the executable and model before use. A mocked command tests the adapter only; acceptance of spoken findings requires a real speech engine and listening to the original audio. An empty transcript does not prove the clip is silent.
+The script creates metadata, a 16 kHz mono audio track, regular and scene-change frames, OCR, a contact sheet, `evidence.json`, and `evidence_report.md`. It extracts embedded subtitles when present. It never downloads models or sends media to a network service.
 
 Choose a fresh output directory. Adjust `--interval`, `--max-frames`, `--scene-threshold`, or `--max-duration` only when the source justifies it. Use `--transcript PATH` when a timestamped transcript already exists.
 
@@ -58,7 +40,7 @@ If the script or required local commands are unavailable, use equivalent availab
 
 ### 3. Produce a time-coded transcript
 
-Use the local route above when available, or another authorised speech-to-text capability on the extracted audio. Preserve timestamps and speaker changes where reliable; this local route does not perform speaker diarization. Mark uncertain words rather than silently repairing them. Distinguish automated speech recognition, creator-supplied captions, embedded subtitles, and OCR text.
+Use an available speech-to-text capability on the extracted audio. Preserve timestamps and speaker changes where reliable. Mark uncertain words rather than silently repairing them. Distinguish automated speech recognition, creator-supplied captions, embedded subtitles, and OCR text.
 
 If no transcription capability is available, continue with frames and on-screen text only when that evidence can answer the request. State that spoken content remains unreviewed. Do not label OCR captions as a complete transcript.
 
@@ -97,7 +79,7 @@ When classification is useful, label the result with the user's relevant project
 
 ### 7. Present a review card
 
-Use the output order in [analysis-schema.md](references/analysis-schema.md). If a write is authorised, compare the candidate with the existing destination, then update the correct knowledge document and processing index without creating duplicates. Otherwise show the candidate record for review.
+Use the output order in [analysis-schema.md](references/analysis-schema.md). Show the candidate record before any permanent write. If approved, compare it with the existing destination first, then update the correct knowledge document and processing index without creating duplicates.
 
 Read [rights-and-safety.md](references/rights-and-safety.md) when the source is private, client-owned, copyrighted, personally identifying, commercially reused, or obtained from a social platform.
 

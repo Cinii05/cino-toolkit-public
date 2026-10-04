@@ -4,25 +4,15 @@
 from __future__ import annotations
 
 import argparse
-import hashlib
 import json
 import math
 import re
 import shutil
 import subprocess
 import sys
+import tempfile
 from datetime import datetime, timezone
 from pathlib import Path
-
-from transcribe_whisper_cpp import transcribe
-
-
-def sha256_file(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as stream:
-        for block in iter(lambda: stream.read(1024 * 1024), b""):
-            digest.update(block)
-    return digest.hexdigest()
 
 
 def run(command: list[str], *, check: bool = True) -> subprocess.CompletedProcess[str]:
@@ -112,36 +102,30 @@ def extract_frame(ffmpeg: str, video: Path, timestamp: float, destination: Path)
         )
 
 
-def find_scene_times(ffmpeg: str, video: Path, threshold: float) -> tuple[list[float], str]:
+def find_scene_times(
+    ffmpeg: str, video: Path, threshold: float, temporary_directory: Path
+) -> list[float]:
+    pattern = temporary_directory / "scene_%05d.jpg"
     result = run(
         [
             ffmpeg,
-            "-nostdin",
             "-hide_banner",
-            "-xerror",
             "-i",
             str(video),
             "-vf",
-            f"select='gt(scene,{threshold})',showinfo",
-            "-an",
-            "-f",
-            "null",
-            "-",
+            f"select='gt(scene,{threshold})',showinfo,scale='min(1280,iw)':-2",
+            "-fps_mode",
+            "vfr",
+            "-q:v",
+            "3",
+            "-y",
+            str(pattern),
         ],
         check=False,
     )
     if result.returncode != 0:
-        return [], "failed"
-    return [float(value) for value in re.findall(r"pts_time:([0-9.]+)", result.stderr)], "complete"
-
-
-def spaced_samples(values: list[float], limit: int) -> list[float]:
-    if len(values) <= limit:
-        return values
-    if limit == 1:
-        return [values[len(values) // 2]]
-    return [values[round(index * (len(values) - 1) / (limit - 1))]
-            for index in range(limit)]
+        return []
+    return [float(value) for value in re.findall(r"pts_time:([0-9.]+)", result.stderr)]
 
 
 def run_ocr(tesseract: str | None, frame: Path) -> tuple[str, str]:
@@ -246,7 +230,6 @@ def write_markdown(evidence: dict, destination: Path) -> None:
         f"- Source file: `{evidence['source']['filename']}`",
         f"- Duration: {evidence['source']['duration_seconds']:.3f} seconds",
         f"- Audio extraction: {evidence['audio']['status']}",
-        f"- Scene detection: {evidence['scene_detection']['status']}",
         f"- Embedded subtitles: {evidence['embedded_subtitles']['status']}",
         f"- OCR: {evidence['ocr']['status']}",
         f"- Speech transcript: {evidence['transcript']['status']}",
@@ -284,14 +267,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--max-frames", type=int, default=60)
     parser.add_argument("--scene-threshold", type=float, default=0.32)
     parser.add_argument("--max-duration", type=float, default=7200.0)
-    transcript_source = parser.add_mutually_exclusive_group()
-    transcript_source.add_argument("--transcript", type=Path,
-                                   help="Existing transcript to attach (label its origin)")
-    transcript_source.add_argument("--whisper-model", type=Path,
-                                   help="Transcribe locally with an existing whisper.cpp model")
-    parser.add_argument("--whisper-cli", default="whisper-cli")
-    parser.add_argument("--transcription-language", default="auto")
-    parser.add_argument("--transcription-timeout", type=int, default=1800)
+    parser.add_argument("--transcript", type=Path)
     return parser.parse_args()
 
 
@@ -304,11 +280,6 @@ def main() -> int:
         raise RuntimeError(f"Input video does not exist: {video}")
     if args.interval <= 0 or args.max_frames < 1 or not 0 < args.scene_threshold < 1:
         raise RuntimeError("Interval, frame limit or scene threshold is invalid.")
-    if args.whisper_model:
-        model = args.whisper_model.expanduser().resolve()
-        if not model.is_file() or model.stat().st_size == 0:
-            raise RuntimeError(f"Local whisper.cpp model unavailable or empty: {model}")
-        require_command(args.whisper_cli)
     if output.exists() and any(output.iterdir()):
         raise RuntimeError(f"Output directory is not empty: {output}")
     output.mkdir(parents=True, exist_ok=True)
@@ -322,33 +293,28 @@ def main() -> int:
         raise RuntimeError(
             f"Video duration {duration:.1f}s exceeds the configured limit {args.max_duration:.1f}s."
         )
-    if duration <= 0:
-        raise RuntimeError("The video has no positive duration.")
 
     audio = extract_audio(ffmpeg, video, output / "audio_16khz_mono.wav")
     subtitles = extract_embedded_subtitles(
         ffmpeg, probe, video, output / "embedded_subtitles.srt"
     )
 
-    scene_times, scene_status = find_scene_times(ffmpeg, video, args.scene_threshold)
-    scene_budget = min(len(scene_times), args.max_frames // 3)
-    regular_budget = args.max_frames - scene_budget
-    regular_count = min(regular_budget, max(1, math.ceil(duration / args.interval)))
-    # Leave room for sparse frame rates and containers whose nominal duration
-    # extends past the timestamp of the final decodable frame.
-    sampling_end = max(0.0, duration - 0.5)
-    regular_interval = (sampling_end / (regular_count - 1)
-                        if regular_count > 1 else 0.0)
-    regular_times = [index * regular_interval for index in range(regular_count)]
+    regular_interval = max(args.interval, duration / max(1, args.max_frames))
+    regular_times = [
+        min(duration - 0.05, index * regular_interval)
+        for index in range(math.ceil(duration / regular_interval))
+        if index * regular_interval < duration
+    ]
+    with tempfile.TemporaryDirectory(prefix="cino-scenes-") as temporary:
+        scene_times = find_scene_times(ffmpeg, video, args.scene_threshold, Path(temporary))
+
     selected: list[tuple[float, str]] = [(value, "interval") for value in regular_times]
-    eligible_scenes = [value for value in scene_times
-                       if value < duration and not any(abs(value - chosen) < 0.75
-                                                       for chosen, _ in selected)]
-    for value in spaced_samples(eligible_scenes, scene_budget):
+    for value in scene_times:
         if value >= duration or any(abs(value - chosen) < 0.75 for chosen, _ in selected):
             continue
         selected.append((value, "scene"))
     selected.sort(key=lambda item: item[0])
+    selected = selected[: args.max_frames]
 
     frames: list[dict] = []
     ocr_failures = 0
@@ -378,15 +344,7 @@ def main() -> int:
             "`audio_16khz_mono.wav`, preserve timestamps, then analyse it with these frames."
         ),
     }
-    if args.whisper_model:
-        if audio["status"] != "complete":
-            raise RuntimeError("Cannot transcribe: audio extraction did not complete.")
-        transcript = transcribe(
-            output / audio["path"], output / "transcript.vtt", args.whisper_model,
-            cli=args.whisper_cli, language=args.transcription_language,
-            timeout=args.transcription_timeout,
-        )
-    elif args.transcript:
+    if args.transcript:
         transcript_source = args.transcript.expanduser().resolve()
         if not transcript_source.is_file():
             raise RuntimeError(f"Supplied transcript does not exist: {transcript_source}")
@@ -395,7 +353,7 @@ def main() -> int:
         transcript = {
             "status": "supplied",
             "path": transcript_destination.name,
-            "note": f"Use the supplied transcript at `{transcript_destination.name}`; verify its origin and accuracy.",
+            "note": f"Use the supplied transcript at `{transcript_destination.name}`.",
         }
     elif subtitles["status"] == "complete":
         transcript = {
@@ -413,7 +371,6 @@ def main() -> int:
             "filename": video.name,
             "path": str(video),
             "size_bytes": video.stat().st_size,
-            "sha256": sha256_file(video),
             "duration_seconds": round(duration, 3),
             "probe": probe,
         },
@@ -423,8 +380,6 @@ def main() -> int:
             "max_frames": args.max_frames,
             "scene_threshold": args.scene_threshold,
         },
-        "scene_detection": {"status": scene_status, "candidates": len(scene_times),
-                            "selected": sum(kind == "scene" for _, kind in selected)},
         "audio": audio,
         "embedded_subtitles": subtitles,
         "transcript": transcript,

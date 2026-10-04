@@ -13,7 +13,7 @@ This repository contains eight reusable workflows:
 - TMC UI Master
 - Unslop
 
-The plugin repository is the source for the shared Toolkit. Personal copies of similarly named skills can have different instructions; they are separate installations. The automation audit starts with evidence, distinguishes staff capacity from cash savings, and scopes a small pilot before recommending commercial delivery.
+The plugin repository is the source for the shared Toolkit. Personal copies of similarly named skills can have different instructions; they are separate installations. The automation audit is a pre-solution workflow diagnosis: it starts with evidence, checks whether automation is justified at all, distinguishes staff capacity from cash savings, and scopes the smallest safe pilot without replacing human commercial authority.
 
 TMC UI Master is included so ordinary ChatGPT and Codex conversations can invoke the same guarded frontend audit, implementation and verification workflow used for The Moving Chain.
 

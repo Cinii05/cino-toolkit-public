@@ -1,0 +1,480 @@
+{
+  "schema": "cino.toolkit.public-candidate/v1",
+  "version": "1.3.0",
+  "source_r2_head": "39628f507a0a368d308f4686cec63e7534ee36aa",
+  "source_candidate": "cino-toolkit-r2-candidate-2026-10-05-rc1",
+  "skill_count": 8,
+  "skills": [
+    "cino-automation-opportunity-audit",
+    "cino-critical-review",
+    "cino-product-design-review",
+    "cino-video-intelligence",
+    "grill-me",
+    "teach-programming-step-by-step",
+    "tmc-ui-master",
+    "unslop"
+  ],
+  "preinstall_acceptance": "93/93 PASS",
+  "independent_review": "CONTINUE_TO_CANDIDATE / 0 findings",
+  "real_pilot": "CONTINUE bounded deterministic diff pilot",
+  "critical_review": "CONTINUE bounded evidence-only pilot",
+  "post_install_gate": "AC-21 PENDING",
+  "foundation_paths_present": false,
+  "files": [
+    {
+      "path": ".agents/plugins/marketplace.json",
+      "sha256": "7be546d3d35a3f6457d44850e4befe8b106b4b8789a354581d66e51fc2358b5d",
+      "size_bytes": 427
+    },
+    {
+      "path": ".codex-plugin/plugin.json",
+      "sha256": "c5a4f2cd4501eadb12715f9ba2ea8bd171f40a99f87ad9da1bc64c67bf3762c3",
+      "size_bytes": 1935
+    },
+    {
+      "path": ".github/workflows/publish-agentops-companion-v0.1.0.yml",
+      "sha256": "a66f51b31f455a88653976951b1d4f4018ae3febf5e5a7b56700fcde032806e8",
+      "size_bytes": 1683
+    },
+    {
+      "path": ".nojekyll",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "path": ".well-known/starnet-skills.json",
+      "sha256": "42b4f249ef0ac7f2da712c2b956730a11646582a1db324e1e02c4595ca6e3b2d",
+      "size_bytes": 6878
+    },
+    {
+      "path": "404.html",
+      "sha256": "b39424a60c045a4e01ebc43d13f89a0a57ed268f3f6eeb2d9d5b6f3f73b6a53f",
+      "size_bytes": 1774
+    },
+    {
+      "path": "agentops/.well-known/starnet-skills.json",
+      "sha256": "42b4f249ef0ac7f2da712c2b956730a11646582a1db324e1e02c4595ca6e3b2d",
+      "size_bytes": 6878
+    },
+    {
+      "path": "agentops/assets/cino-agentops.svg",
+      "sha256": "b6a6c3a2557455c79354d9cecaed21efae1a9d3008b1b6017c1779e13ca36831",
+      "size_bytes": 1391
+    },
+    {
+      "path": "agentops/index.html",
+      "sha256": "3cf84bccca7f53a15e0f2bc85ca8a83ec9b6c8d4883ff593c2201a5c7f1d3c40",
+      "size_bytes": 17509
+    },
+    {
+      "path": "assets/composer-icon.svg",
+      "sha256": "ed59e03623e6c255d832bd9976b455f85deaba76112457248654473a3196f5d3",
+      "size_bytes": 340
+    },
+    {
+      "path": "assets/logo.svg",
+      "sha256": "ed59e03623e6c255d832bd9976b455f85deaba76112457248654473a3196f5d3",
+      "size_bytes": 340
+    },
+    {
+      "path": "index.html",
+      "sha256": "cf85f6f6d905d0c0dd2be5fa339f84308346ff7328315a8db6985a0d4084f801",
+      "size_bytes": 3823
+    },
+    {
+      "path": "privacy/index.html",
+      "sha256": "547b3895a0a6ec6c2bcec11a47fe92e04c0d521999af676907b1fe43db6c415b",
+      "size_bytes": 5536
+    },
+    {
+      "path": "README.md",
+      "sha256": "011badb4c478dc55a67df966028ccafb6b2f90104fe054e594c3cbe097747ca3",
+      "size_bytes": 2011
+    },
+    {
+      "path": "skills/cino-automation-opportunity-audit/agents/openai.yaml",
+      "sha256": "09a379926d1778eb5ec9f09e0667a3cfcbe49d9027b0675631d76a4c34517eba",
+      "size_bytes": 440
+    },
+    {
+      "path": "skills/cino-automation-opportunity-audit/assets/icon.svg",
+      "sha256": "36d8cff3510c8e063b3c999cc1f3adc801395966ed0903127243dbacf25c7e04",
+      "size_bytes": 674
+    },
+    {
+      "path": "skills/cino-automation-opportunity-audit/references/acceptance-criteria.md",
+      "sha256": "c21369c69903e924f71c5da33890e4f15bfb8b9b2b5d303cd2fbed9067591bf3",
+      "size_bytes": 2842
+    },
+    {
+      "path": "skills/cino-automation-opportunity-audit/references/discovery-framework.md",
+      "sha256": "cbc39b34405a2863ea4d230e70d38c1c21dad508f93216787404c16c09fac38d",
+      "size_bytes": 1672
+    },
+    {
+      "path": "skills/cino-automation-opportunity-audit/references/opportunity-scoring.md",
+      "sha256": "fc34dbf90bfc5a6b68679df8d2f8bf092e5ba1a41535aba745039e90a113dd7a",
+      "size_bytes": 2408
+    },
+    {
+      "path": "skills/cino-automation-opportunity-audit/references/report-contract.md",
+      "sha256": "a1e3f2307d261b63fe44fae6596cca439c7be417f8f9eb24e2f4c8adec2544f4",
+      "size_bytes": 1359
+    },
+    {
+      "path": "skills/cino-automation-opportunity-audit/references/risk-and-boundaries.md",
+      "sha256": "ab803a965f86c34bb31d1b14c45e901faac3f295dd841561bed527b7f755491f",
+      "size_bytes": 1498
+    },
+    {
+      "path": "skills/cino-automation-opportunity-audit/references/routing-and-precedence.md",
+      "sha256": "96fc56e99999e77cd2e4998aa3d85c2108b7e25bddb725740a1d50b27715b1a6",
+      "size_bytes": 2587
+    },
+    {
+      "path": "skills/cino-automation-opportunity-audit/SKILL.md",
+      "sha256": "2a52eb7f128e6ec3359db1b12fe239e342ff148dda26358141766ff3431883d4",
+      "size_bytes": 8242
+    },
+    {
+      "path": "skills/cino-critical-review/agents/openai.yaml",
+      "sha256": "63867d8c4363fc98b2e5f382955ef6a94a2210c533c6dc685b5940615515ebf9",
+      "size_bytes": 317
+    },
+    {
+      "path": "skills/cino-critical-review/assets/icon.svg",
+      "sha256": "ad4abaf0a65a77be91798aab3269e99ab7ac69b29142f1e4f4f02a4b06077406",
+      "size_bytes": 460
+    },
+    {
+      "path": "skills/cino-critical-review/SKILL.md",
+      "sha256": "37767b3e72608f9d02d26329f57212a4037c68dd8d263490b07136242bdaf4a6",
+      "size_bytes": 5021
+    },
+    {
+      "path": "skills/cino-product-design-review/agents/openai.yaml",
+      "sha256": "dea9ad9251f9e37a0caf57c96cc4f7e117599948d18fd5dae0ef50251666cb37",
+      "size_bytes": 312
+    },
+    {
+      "path": "skills/cino-product-design-review/assets/icon.svg",
+      "sha256": "ad4abaf0a65a77be91798aab3269e99ab7ac69b29142f1e4f4f02a4b06077406",
+      "size_bytes": 460
+    },
+    {
+      "path": "skills/cino-product-design-review/references/audit-criteria.md",
+      "sha256": "56bf826b62803c9c0625047df96b135386894186a9331625090c4c74a3d43609",
+      "size_bytes": 4846
+    },
+    {
+      "path": "skills/cino-product-design-review/references/finding-format.md",
+      "sha256": "b4be04277afb36929864dfbd73c645efbc0fcf2707ab6d7f84635db564bf4015",
+      "size_bytes": 3639
+    },
+    {
+      "path": "skills/cino-product-design-review/references/responsive-testing.md",
+      "sha256": "eb64907b592bd14f8014e6bfec031ccb2590d4330db9192794c88f8056e41b6c",
+      "size_bytes": 3146
+    },
+    {
+      "path": "skills/cino-product-design-review/references/validation.md",
+      "sha256": "91d33c5d5322e2a49d6d0023a95746584c2f087041a3154f0ab7d7c5e3bd3fca",
+      "size_bytes": 2018
+    },
+    {
+      "path": "skills/cino-product-design-review/SKILL.md",
+      "sha256": "658233a951c500c1223ea807e8570ecd4cab68fd713315b1151fc96f19b61883",
+      "size_bytes": 5689
+    },
+    {
+      "path": "skills/cino-video-intelligence/agents/openai.yaml",
+      "sha256": "d0a504f6a3dee283dc7cec1e60bd23de3b67d0056de3943b0eb271d78ea9f103",
+      "size_bytes": 332
+    },
+    {
+      "path": "skills/cino-video-intelligence/assets/icon.svg",
+      "sha256": "7e7b14e3d2fc5bd54b1efbdbdbb4848dffd45529595d759d630fa53d660c3f25",
+      "size_bytes": 883
+    },
+    {
+      "path": "skills/cino-video-intelligence/references/analysis-schema.md",
+      "sha256": "9dfc2834a67e7e9f8e2e3d4142b5f2bfcfc0b56040ba1551fd886a5708d886d2",
+      "size_bytes": 3450
+    },
+    {
+      "path": "skills/cino-video-intelligence/references/rights-and-safety.md",
+      "sha256": "4d2e9417bd26eba50b5f0a82f0947dfa49ee04e759f957fd8958c50778b11c10",
+      "size_bytes": 2287
+    },
+    {
+      "path": "skills/cino-video-intelligence/references/validation.md",
+      "sha256": "d2a1549fdfd22c19c0fdb2d2ef8c873388753896e7b29781a490c3cd01e87e7d",
+      "size_bytes": 1613
+    },
+    {
+      "path": "skills/cino-video-intelligence/scripts/extract_video_evidence.py",
+      "sha256": "63ff7971e01aaf88748ff8c5782f69938af867bdcaa020bd1067868d0c667489",
+      "size_bytes": 13589
+    },
+    {
+      "path": "skills/cino-video-intelligence/SKILL.md",
+      "sha256": "db0923de1022caa02db1608186188c0d45cca8e35777091916a397928e0a5665",
+      "size_bytes": 6450
+    },
+    {
+      "path": "skills/grill-me/agents/openai.yaml",
+      "sha256": "2fe730a692a9b52a0d94c97e28858808ff4313b790ee199bddaa26e22fe85c31",
+      "size_bytes": 280
+    },
+    {
+      "path": "skills/grill-me/assets/icon.svg",
+      "sha256": "e78e03b2ebd87671b108c2619afd7993ae5ec9a1ccac8850ced501a76c997356",
+      "size_bytes": 2134
+    },
+    {
+      "path": "skills/grill-me/LICENSE",
+      "sha256": "ff9275946b1ccebaad5738398b5382e5a72b18eed3062db76284a691183a255b",
+      "size_bytes": 1127
+    },
+    {
+      "path": "skills/grill-me/SKILL.md",
+      "sha256": "68e95ca3efb83bc723ad8c347a66d218d911f69e12ef35a2876402d41c7d7798",
+      "size_bytes": 1244
+    },
+    {
+      "path": "skills/teach-programming-step-by-step/agents/openai.yaml",
+      "sha256": "9ef5f0178a330a69897b44853fb0519dfb7fe794cc522f4e36763a55e0ce7bfd",
+      "size_bytes": 311
+    },
+    {
+      "path": "skills/teach-programming-step-by-step/assets/icon.svg",
+      "sha256": "736c7c769b9374b4561439846ee8e440a0101bcd6363b2248c5ea9d9daed8d1c",
+      "size_bytes": 463
+    },
+    {
+      "path": "skills/teach-programming-step-by-step/SKILL.md",
+      "sha256": "a779aa1d0f1e47146d3036a7c5845b08442d9502e7c4a0964a5cb6cd46fb78f4",
+      "size_bytes": 6289
+    },
+    {
+      "path": "skills/tmc-ui-master/agents/openai.yaml",
+      "sha256": "1729bbc07e92a5d3a9510d333ae0583b82b9a0e4077fd5f1c37c99e71bbff29e",
+      "size_bytes": 338
+    },
+    {
+      "path": "skills/tmc-ui-master/assets/icon.svg",
+      "sha256": "9acf50e169bf600cf26b84bf9c58027328747e1df3437d229df3856264d6e4a8",
+      "size_bytes": 2952
+    },
+    {
+      "path": "skills/tmc-ui-master/references/audit-and-implementation.md",
+      "sha256": "65297da979a2560f857e848a6991a46c35c13b97d11364cc3b10efb7f0e7f8a4",
+      "size_bytes": 7681
+    },
+    {
+      "path": "skills/tmc-ui-master/references/authority-and-invariants.md",
+      "sha256": "0e54057fc98e292575633c691d8fb51464edee92768c1460a52a2c461b7e4b16",
+      "size_bytes": 6022
+    },
+    {
+      "path": "skills/tmc-ui-master/references/code-hygiene.md",
+      "sha256": "58232432fd940c06b73c7f0ab509e8f6bcda5cd019a989cd82f76545dcb70f04",
+      "size_bytes": 7067
+    },
+    {
+      "path": "skills/tmc-ui-master/references/verification-matrix.md",
+      "sha256": "2c5e0423216042451ed5145fb15ca8fc0c538020b048425f9f0838402d51ede4",
+      "size_bytes": 8858
+    },
+    {
+      "path": "skills/tmc-ui-master/SKILL.md",
+      "sha256": "779016c33df386be1d76ec0844fbb3e6b0bd401b3f4fccd6bf29f980831b31e8",
+      "size_bytes": 8403
+    },
+    {
+      "path": "skills/unslop/agents/openai.yaml",
+      "sha256": "f178d80937afcba5a220e70229277d41e009bf0607c851e4d5aa1f0b05f00568",
+      "size_bytes": 280
+    },
+    {
+      "path": "skills/unslop/assets/icon.svg",
+      "sha256": "dd8444d6f1e654ee7452414392561827a55a53558635f8c733459897fbf0ccb7",
+      "size_bytes": 1250
+    },
+    {
+      "path": "skills/unslop/SKILL.md",
+      "sha256": "3a5daeb69324126157815c6c30ab3fe4c72dd04722317191506a88dabae4d458",
+      "size_bytes": 6935
+    },
+    {
+      "path": "starnet/agentops/v1.0.0/cino-agent-router/SKILL.md",
+      "sha256": "78154646dd880c8ee5e96aafa85c05a338fbe795fff57a33004468126fafdcaf",
+      "size_bytes": 2400
+    },
+    {
+      "path": "starnet/agentops/v1.0.0/cino-context-funnel/SKILL.md",
+      "sha256": "7740dae7c2949032952a86bb6fa9eb85d1ce671fd81480e763eb06972eec819e",
+      "size_bytes": 2980
+    },
+    {
+      "path": "starnet/agentops/v1.0.0/cino-evidence-handoff/SKILL.md",
+      "sha256": "1f95bb6c68e2eb32fc25d78a6bda13778a1628ba8a7af22f65a39727d8944d77",
+      "size_bytes": 2318
+    },
+    {
+      "path": "starnet/agentops/v1.0.0/cino-plan-before-build/SKILL.md",
+      "sha256": "631ef2ec2b48737251c3ab9a6a595b15a65033f0ba3483516f2575079f595d30",
+      "size_bytes": 3995
+    },
+    {
+      "path": "starnet/agentops/v1.0.0/cino-repo-navigator/SKILL.md",
+      "sha256": "363fb66fc807ad2c8d15eafb50704c3f1de903b3a12e0514c86372626eb91143",
+      "size_bytes": 1441
+    },
+    {
+      "path": "starnet/agentops/v1.0.0/cino-skill-governor/SKILL.md",
+      "sha256": "f4e83c58ab58c5107a188e848a679c933e20e46c7a4c6be1716ef1ccf8d1a6bb",
+      "size_bytes": 5841
+    },
+    {
+      "path": "starnet/agentops/v1.0.0/cino-skill-governor-approval-model/SKILL.md",
+      "sha256": "78200bf2836b08a4d1430cfe935fd43354f87b38fc70b41cc4149fded3e2388a",
+      "size_bytes": 4972
+    },
+    {
+      "path": "starnet/agentops/v1.0.0/cino-source-of-truth/SKILL.md",
+      "sha256": "ce6f46b0317349dd36127f0813c5bdda40ac9f6c0f881c047d0705a3bca80284",
+      "size_bytes": 3792
+    },
+    {
+      "path": "starnet/agentops/v1.0.0/cino-test-router/SKILL.md",
+      "sha256": "64cee25294f5fd5ed6b873e63a78c5460bf2658433468d8a0885c4aa2404e490",
+      "size_bytes": 3555
+    },
+    {
+      "path": "starnet/agentops/v1.0.0/manifest.json",
+      "sha256": "d76cdcd7a1573033bea9af58e1a9bf68c25828f47fbe051f4eab57db6fc7d0b6",
+      "size_bytes": 7933
+    },
+    {
+      "path": "starnet/agentops/v1.0.0/packages/cino-agent-router.starnet-skill.json",
+      "sha256": "0c17aa8fdea7b93397251d44f019fc38e12edad9172445c9b886693afdcf679c",
+      "size_bytes": 4066
+    },
+    {
+      "path": "starnet/agentops/v1.0.0/packages/cino-context-funnel.starnet-skill.json",
+      "sha256": "5d596b95b2548a90b88112ca02f45d9d53ac334e33855cddaa81b2ec11d68f78",
+      "size_bytes": 4888
+    },
+    {
+      "path": "starnet/agentops/v1.0.0/packages/cino-evidence-handoff.starnet-skill.json",
+      "sha256": "a2ab5d7954cfd32ce83d2a75e832138d9bd890724124f75d39ee68b6af2331a0",
+      "size_bytes": 3999
+    },
+    {
+      "path": "starnet/agentops/v1.0.0/packages/cino-plan-before-build.starnet-skill.json",
+      "sha256": "ba3251ca7dd9b21238e8417e302f7e2b2b4330c198523e5899293f610f9f66f9",
+      "size_bytes": 6219
+    },
+    {
+      "path": "starnet/agentops/v1.0.0/packages/cino-repo-navigator.starnet-skill.json",
+      "sha256": "5be432041c9776f4e6ebb17941592d42d3c3f6ecf5276e29a121b2d008334a5d",
+      "size_bytes": 2763
+    },
+    {
+      "path": "starnet/agentops/v1.0.0/packages/cino-skill-governor-approval-model.starnet-skill.json",
+      "sha256": "a5170343ff41dd0560b6ebda1e91c7ccd855bc640ecca41ed3c831976976d61e",
+      "size_bytes": 7440
+    },
+    {
+      "path": "starnet/agentops/v1.0.0/packages/cino-skill-governor.starnet-skill.json",
+      "sha256": "b6a73b0951aa4b73cf656ae734da19d1453cf9d07f89ad4a2a8dc168cb1b89fe",
+      "size_bytes": 8595
+    },
+    {
+      "path": "starnet/agentops/v1.0.0/packages/cino-source-of-truth.starnet-skill.json",
+      "sha256": "556aa8ac931318ca965e0f4bee7e2302dd7efa54b522e75eb6ec64cdcc511e73",
+      "size_bytes": 5917
+    },
+    {
+      "path": "starnet/agentops/v1.0.0/packages/cino-test-router.starnet-skill.json",
+      "sha256": "ed414b2c7dce2e793018ba3ce4279e7d4edcfe107bf9307d24b4de6880b89462",
+      "size_bytes": 5549
+    },
+    {
+      "path": "starnet/agentops/v1.0.0/README.md",
+      "sha256": "b9daf97d8c75c2c1785a0b11e9dab20ba999fdb8d4987961db864a213eae63a6",
+      "size_bytes": 1773
+    },
+    {
+      "path": "starnet/plugins/cino-agentops/README.md",
+      "sha256": "7913c3cfae62ae37868ae36a7a70012dd5ff7be6a468619a1481342891fb07bf",
+      "size_bytes": 519
+    },
+    {
+      "path": "starnet/plugins/cino-agentops/v0.1.0/INSTALL.md",
+      "sha256": "5b469a7f8f5bd2f9bfac2a9343d4ad320f350089e323d0239cec61f958ade950",
+      "size_bytes": 2220
+    },
+    {
+      "path": "starnet/plugins/cino-agentops/v0.1.0/package/cino-agentops-starnet-plugin-0.1.0.zip.b64",
+      "sha256": "a4d8657f64b9fa7aa2042c9cf2d5dd319fc7c615f2fb59e4acbc0a9f676c398a",
+      "size_bytes": 3702
+    },
+    {
+      "path": "starnet/plugins/cino-agentops/v0.1.0/README.md",
+      "sha256": "af4074662f2ec77b89a298a56f3fcf092a9d085ec248b0d1cd1af6cb108677f7",
+      "size_bytes": 2580
+    },
+    {
+      "path": "starnet/plugins/cino-agentops/v0.1.0/release-manifest.json",
+      "sha256": "2b8a36685a5335d94580525f04e87155ef1c02301085ee90dc488d86a13b040b",
+      "size_bytes": 1639
+    },
+    {
+      "path": "starnet/plugins/cino-agentops/v0.1.0/RELEASE_NOTES.md",
+      "sha256": "cf8eebe220a4ae9d73e1325039b931fdb1a3e1c4065298b44bebc6a5bbbfb669",
+      "size_bytes": 885
+    },
+    {
+      "path": "starnet/plugins/cino-agentops/v0.1.0/SHA256SUMS.txt",
+      "sha256": "efacdf5662381de0b0a6424aa7f70be73893b492f14db6ce7c1af42750a05803",
+      "size_bytes": 449
+    },
+    {
+      "path": "starnet/plugins/cino-agentops/v0.1.0/source/assets/icon.svg",
+      "sha256": "fc81c288afe06549be8dc2d69c7696a0e5c95301a0d1281721b95944a06029da",
+      "size_bytes": 1230
+    },
+    {
+      "path": "starnet/plugins/cino-agentops/v0.1.0/source/index.js",
+      "sha256": "074c57c238b0293729a683c1c595954683499af1fe0650d54e02a5006f405596",
+      "size_bytes": 3112
+    },
+    {
+      "path": "starnet/plugins/cino-agentops/v0.1.0/source/plugin.json",
+      "sha256": "478317d00f1b91bbd6a162ae56d90bd876c5def64b99c7fd79a536ee8947d1b3",
+      "size_bytes": 304
+    },
+    {
+      "path": "starnet/plugins/cino-agentops/v0.1.0/source/README.md",
+      "sha256": "fbc4f882ae2d0de36811011f69611c2094aa2db4ff6fb4d567111a99aa6c0320",
+      "size_bytes": 836
+    },
+    {
+      "path": "starnet/README.md",
+      "sha256": "3e28e07041dab1b4bb9e4e77fb7bea0768c7b5f3febe3f58e45b15c4fb945d16",
+      "size_bytes": 1453
+    },
+    {
+      "path": "support/index.html",
+      "sha256": "fb9f975b36185f68be6e4105802921747b3a95c10fbe177933b78a4c149c956d",
+      "size_bytes": 2413
+    },
+    {
+      "path": "terms/index.html",
+      "sha256": "5145aab2e73465717378b28a0299a2624ae0fa736f6d4117ed63348728b227f4",
+      "size_bytes": 3686
+    }
+  ]
+}
