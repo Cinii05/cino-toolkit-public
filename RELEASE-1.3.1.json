@@ -1,0 +1,14 @@
+{
+  "release": "1.3.1",
+  "date": "2026-10-05",
+  "type": "directory-metadata-only",
+  "base_release": "v1.3.0",
+  "base_release_commit": "b05d769ca954df044b56c73e5ddf5ff1fb8dfa02",
+  "ac21": "PASS (reused: all eight SKILL.md files byte-identical to v1.3.0)",
+  "changes": [
+    "Bump plugin package version to 1.3.1.",
+    "Remove unsupported policy.products from cino-automation-opportunity-audit agents/openai.yaml while preserving allow_implicit_invocation=true."
+  ],
+  "semantic_skill_change": false,
+  "rollback": "v1.3.0"
+}
