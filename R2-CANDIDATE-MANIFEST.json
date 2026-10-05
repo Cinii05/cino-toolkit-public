@@ -18,7 +18,7 @@
   "independent_review": "CONTINUE_TO_CANDIDATE / 0 findings",
   "real_pilot": "CONTINUE bounded deterministic diff pilot",
   "critical_review": "CONTINUE bounded evidence-only pilot",
-  "post_install_gate": "AC-21 PENDING",
+  "post_install_gate": "AC-21 PASS",
   "foundation_paths_present": false,
   "files": [
     {
@@ -476,5 +476,36 @@
       "sha256": "5145aab2e73465717378b28a0299a2624ae0fa736f6d4117ed63348728b227f4",
       "size_bytes": 3686
     }
-  ]
+  ],
+  "post_install_evidence": {
+    "live_runtime": "Codex/ChatGPT Desktop local plugin runtime",
+    "plugin": "cino-toolkit@cino-local",
+    "version": "1.3.0",
+    "discovered_skill_count": 8,
+    "discovered_skills": [
+      "cino-automation-opportunity-audit",
+      "cino-critical-review",
+      "cino-product-design-review",
+      "cino-video-intelligence",
+      "grill-me",
+      "teach-programming-step-by-step",
+      "tmc-ui-master",
+      "unslop"
+    ],
+    "routing_outcomes": {
+      "raw_workflow": "cino-automation-opportunity-audit",
+      "concrete_proposal": "cino-critical-review",
+      "question_by_question": "grill-me",
+      "tmc_operational_workflow": "cino-automation-opportunity-audit",
+      "tmc_ui": "tmc-ui-master",
+      "workflow_video": [
+        "cino-video-intelligence",
+        "cino-automation-opportunity-audit"
+      ]
+    },
+    "reference_path_defect_repaired": true,
+    "routing_frontmatter_unchanged_by_repair": true,
+    "post_repair_static_acceptance": "99/99 PASS",
+    "post_repair_independent_review": "CONTINUE_TO_CANDIDATE / 0 findings"
+  }
 }
