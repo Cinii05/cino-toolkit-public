@@ -1,160 +1,156 @@
 ---
 name: cino-automation-opportunity-audit
-description: Audit a business workflow to find, rank, scope, price, and test worthwhile automation opportunities. Use when a user asks what a business should automate, wants an AI or automation audit, needs a workflow mapped, wants ROI or feasibility assessed, needs a smallest viable automation defined, or wants service opportunities extracted for Cino Engine A or the Tiny Automations Library. Separate measured facts from claims and assumptions, reject tool-first or unsafe automation, and produce a decision-ready audit rather than implementing changes.
+description: Diagnose a real business workflow before a concrete automation solution, plan, or specification exists, and decide what should or should not be automated. Use for current-state workflow mapping, bottleneck diagnosis, automation-opportunity ranking, conservative business-case analysis, and smallest safe pilot definition from raw operational evidence. Prefer existing product features, process fixes, or human handling when they dominate custom automation. If a concrete automation plan, specification, vendor choice, claim, or implementation proposal already exists and the user wants it reviewed or challenged, use cino-critical-review instead. Do not use for open-ended interview mode, website/UI audits, prose rewriting, teaching, video extraction, or implementation/deployment.
 ---
 
 # Cino Automation Opportunity Audit
 
-Find the smallest automation that solves a measured business problem. Do not begin with a tool, agent, or interface. Begin with the workflow, evidence, failure modes, and decision the audit must support.
+Diagnose the workflow before recommending technology. The objective is not to find an automation at any cost; it is to identify the smallest justified intervention that improves a real business outcome.
 
 ## Operating boundary
 
-- Work read-only unless implementation is separately authorised.
-- Never invent volumes, wages, conversion rates, error rates, savings, prices, permissions, or system capabilities.
-- Label each important input as source fact, observed evidence, direct inference, assumption, or unknown.
-- Verify unstable or material claims with current authoritative sources. This includes laws, platform capabilities, product pricing, security requirements, and regulated workflows.
-- Confirm the relevant jurisdiction before making legal, privacy, employment, tax, or sector-specific conclusions. Flag legal questions for qualified review rather than presenting the audit as legal advice.
-- Reject deceptive activity, copying without rights, impersonation, unsafe credential handling, and unsupervised high-impact decisions.
-- Before reporting a secret exposure from OCR or logs, confirm that a plausible value is present rather than only a label. Do not reproduce suspected credentials in the audit.
-- Treat released staff time as capacity, not cash savings, unless the business can remove a real cost or has a measurable plan to reuse that capacity.
-- Keep the first implementation narrow, reversible, observable, and supported by a manual fallback.
+- Audit and specify only. Do not deploy, purchase, message customers, change production systems, create accounts, or perform other external mutations unless the user separately and explicitly authorizes a later implementation workflow.
+- Never invent labour volumes, staff costs, conversion rates, savings, error rates, revenue, support burden, tool pricing, or integration capability.
+- Never guarantee savings, revenue, headcount reduction, or ROI.
+- Treat a native feature in the client's existing system, a process change, a template, training, or continued human judgment as valid outcomes.
+- High-impact financial, legal, medical, safety, employment, identity, permission, or irreversible actions require explicit human approval and cannot be proposed as unsupervised first pilots.
+- Separate facts from inferences, assumptions, and unknowns. Missing evidence weakens the recommendation.
 
-## Choose the audit mode
+## Required references
 
-1. **Triage** - Decide whether a workflow deserves deeper discovery.
-2. **Discovery** - Map the workflow, collect the baseline, and rank candidates.
-3. **Full audit** - Produce a decision-ready pilot, value scenarios, controls, and verdict.
-4. **Commercial packaging** - Turn an evidenced opportunity into a scoped Cino offer.
+Read [discovery-framework.md](references/discovery-framework.md) to structure evidence collection and the current-state workflow.
+Read [opportunity-scoring.md](references/opportunity-scoring.md) to classify tasks and rank opportunities without false precision.
+Read [risk-and-boundaries.md](references/risk-and-boundaries.md) before recommending any automation that writes, sends, approves, pays, deletes, discloses, or changes consequential state.
+Read [report-contract.md](references/report-contract.md) for the required audit output.
+Read [routing-and-precedence.md](references/routing-and-precedence.md) when this skill overlaps another Cino Toolkit skill.
+Read [acceptance-criteria.md](references/acceptance-criteria.md) only when validating or revising this skill itself.
 
-For Discovery and Full audit modes, read `references/interview-and-scoring.md`. For the final deliverable, also read `references/audit-report-template.md`.
+## Evidence labels
+
+Use these labels for decision-changing claims:
+
+- CLIENT_FACT — stated by the client/user or supplied in their records.
+- SOURCE_FACT — directly established from an inspected system, file, documentation, or authoritative source.
+- DIRECT_INFERENCE — follows reasonably from established facts.
+- ASSUMPTION — a provisional value or condition used only to explore a scenario.
+- UNKNOWN — needed before the recommendation can safely depend on it.
+
+Do not relabel an assumption as a fact because it produces a convenient business case.
 
 ## Audit workflow
 
-### 1. Establish the decision
+### 1. Define the outcome
 
-Record:
+Identify the business outcome, actors, trigger, end state, current systems of record, known volume/frequency, observed pain, and the decision the audit must support.
 
-- the business, customer group, workflow, and accountable owner;
-- the problem and desired outcome;
-- what is inside and outside scope;
-- affected systems and manual work;
-- legal, contractual, operational, data, and budget constraints;
-- success, failure, and stop conditions.
+Ask only for missing information that materially changes the ranking or safety decision. If enough evidence already exists, proceed and record the gaps.
 
-If the decision is unclear, ask focused questions before calculating value.
+### 2. Map the current state
 
-### 2. Build an evidence ledger
+Represent the workflow as ordered steps:
+trigger -> input -> action -> decision -> write/send -> exception -> completion
 
-Collect the minimum facts needed to test the case:
+For each material step, record actor, system/tool, input, action, output, wait time if known, manual time if known, error/rework signal if known, approval boundary, and exception path.
 
-- event volume and seasonality;
-- staff touch time and waiting time;
-- errors, rework, missed enquiries, no-shows, churn, or delays;
-- loaded labour cost, avoidable cost, and gross contribution per recovered outcome;
-- implementation, software, model, monitoring, support, and correction costs;
-- system access, APIs, permissions, consent, and data availability;
-- common exceptions, failure paths, and recovery work.
+Do not infer hidden steps merely because they are common in the industry.
 
-Keep creator claims, vendor claims, management estimates, sampled records, and measured baselines separate. Do not upgrade an estimate into a fact through repetition.
+### 3. Identify the real bottleneck
 
-### 3. Map the current workflow
+Distinguish repetitive manual work, waiting/latency, duplicate entry, missed follow-up, inconsistent decisions, missing information, avoidable errors, poor handoff, bad process design, inadequate existing configuration, and genuinely judgment-heavy work.
 
-For each step capture the trigger, owner, input, system, action, decision, output, handoff, touch time, wait time, frequency, exceptions, and recovery path.
+Rank the bottleneck before discussing tools.
 
-Identify the actual constraint. A slow handoff, unclear rule, bad data, duplicated entry, or unnecessary approval may matter more than the visible task. Recommend removing or simplifying a step when that is better than automating it.
+### 4. Classify each candidate task
 
-### 4. Generate interventions in the right order
+Use one of:
 
-Consider candidates in this order:
+- AUTOMATE_CANDIDATE — repetitive, bounded, measurable, and safely automatable.
+- PILOT_WITH_HUMAN_GATE — automation may help, but a consequential action needs review/approval.
+- USE_EXISTING_FEATURE — the incumbent system already provides an adequate capability.
+- PROCESS_FIRST — a simpler operating-process change dominates software.
+- KEEP_HUMAN — judgment, empathy, negotiation, or accountability is the core value.
+- NEEDS_EVIDENCE — evidence is insufficient for a responsible automation decision.
+- DO_NOT_AUTOMATE — risk, fragility, cost, or low value clearly outweighs likely benefit.
 
-1. Remove the unnecessary step.
-2. Clarify the rule or ownership.
-3. Configure the existing system.
-4. Use deterministic automation.
-5. Use AI when interpretation or generation is genuinely required.
-6. Use an agent only when a bounded but open-ended action path creates enough value to justify the added control burden.
+Classification is not a maturity score. Do not force every task toward automation.
 
-Do not recommend an AI agent where a form, webhook, template, rule, or queue will do the job more reliably.
+If no material problem, measurable consequence, or credible opportunity is demonstrated, classify DO_NOT_AUTOMATE and normally REJECT. If whether a problem exists is itself unknown, classify NEEDS_EVIDENCE and PAUSE instead of assuming pain.
 
-### 5. Score candidates and apply gates
+### 5. Quantify conservatively
 
-Use the scoring model in `references/interview-and-scoring.md`. Show the component scores and supporting evidence, not only the total.
+When the necessary facts exist, calculate transparent ranges rather than a single optimistic ROI number.
 
-Apply gates before recommending implementation:
+Useful formulas:
 
-- **Reject** if the activity is illegal, deceptive, rights-infringing, unauthorised, or cannot be made acceptably safe.
-- **Pause** when authority, consent, security, regulation, data rights, or critical vendor capability is unresolved.
-- **Simplify first** when the underlying process is unstable or poorly owned.
-- **Discovery only** when the baseline is too weak to support ROI.
-- **Pilot** when delivery and economics are plausible but uncertain.
-- **Adopt** only when live evidence meets the agreed thresholds.
+- hours_per_period = volume * minutes_per_item / 60
+- hours_saved_range = volume * minutes_saved_range / 60
+- labour_value_range = hours_saved_range * loaded_hourly_cost_range
+- net_value_range = measurable_benefit_range - setup_cost - ongoing_cost_range
 
-Hard gates override the numeric score.
+State the period and units.
 
-### 6. Model value conservatively
+If volume, time saved, loaded labour cost, error cost, conversion impact, setup cost, or operating cost is unknown, leave that component unknown. Do not substitute industry averages unless the user explicitly asks for a scenario model and the assumption is labelled.
 
-Create low, base, and high scenarios. Separate:
+Avoid double-counting the same benefit as both labour saving and revenue gain.
 
-- time capacity released;
-- avoidable cash cost;
-- recoverable gross contribution;
-- one-time implementation cost;
-- recurring software, model, monitoring, support, and correction costs;
-- risk-adjusted monthly net value and payback.
+### 6. Check existing capabilities before custom build
 
-Do not double-count labour capacity and payroll savings. Do not treat revenue as profit. Reduce expected value for adoption, exceptions, failure, review time, and ramp-up. If the inputs are assumptions, present scenario maths, not a proven ROI claim.
+Before recommending custom software or orchestration, determine whether the current CRM, booking, accounting, helpdesk, form, email, or vertical SaaS already provides the needed feature or a reliable integration.
 
-If a material input cannot be bounded honestly, mark net value or payback **not calculable yet** and state the measurement needed. Never create a scenario merely to fill the table.
+If an existing feature adequately solves the problem, recommend using/configuring it first.
 
-### 7. Define the smallest viable pilot
+### 7. Build the risk register
 
-Specify:
+Check wrong-recipient/wrong-record risk, duplicate/missed action, permissions, secrets, privacy, consent, consequential actions, irreversible writes/deletes, vendor dependency, exception handling, monitoring/support burden, and rollback/manual fallback.
 
-- user, problem, trigger, input, steps, output, and exclusions;
-- integrations, permissions, and data boundaries;
-- human approvals, alerts, manual fallback, retry, and rollback;
-- logging, retention, and audit requirements;
-- measures, sample size or duration, owner, and review date;
-- pass, change, and stop thresholds.
+Prefer reversible, observable first pilots.
 
-Prefer shadow mode, drafts, recommendations, or human confirmation before autonomous external actions.
+### 8. Rank opportunities
 
-Choose duration and sample size to cover normal operating variation, known peak periods, and enough eligible cases to expose common failures. Derive thresholds from the current baseline, customer harm tolerance, and operational capacity; label unvalidated thresholds as provisional.
+Prioritize clear pain, measurable volume/consequence, bounded input/output, manageable exceptions, reversibility, reliable access, low support burden, and short path to evidence.
 
-### 8. Package a commercial offer only after evidence
+Do not rank by novelty or AI intensity.
 
-Where appropriate, separate:
+### 9. Specify the smallest testable intervention
 
-- paid discovery and baseline measurement;
-- implementation and integration;
-- third-party software and usage costs;
-- training and operating documentation;
-- monthly monitoring, support, optimisation, and change allowance.
+Define:
+- trigger;
+- inputs;
+- deterministic steps;
+- AI/judgment step only if genuinely needed;
+- human approval point;
+- outputs;
+- failure alert;
+- manual fallback;
+- logging/evidence;
+- acceptance measures;
+- rollback/removal path;
+- trial period or sample size.
 
-Price from delivery effort, risk, ongoing support, and credible customer value. Mark untested pricing and demand as hypotheses. Never imply guaranteed savings or outcomes.
+### 10. Give a decision
 
-### 9. Issue the verdict
+Choose one:
 
-Use one verdict: **Continue**, **Modify**, **Pause**, or **Reject**.
+- CONTINUE — evidence supports a bounded pilot or configuration change now.
+- MODIFY — the opportunity is real, but scope, authority, safety, or design must change before a pilot.
+- PAUSE — missing evidence or access prevents a responsible decision.
+- REJECT — automation/custom build is not justified; another approach dominates or the risk/value balance is poor.
 
-- **Continue** when the proposed next step is suitably scoped and no unresolved gate blocks it.
-- **Modify** when a narrower or materially changed version can proceed while broader elements are excluded.
-- **Pause** when the useful next step itself is blocked by missing authority, evidence, access, or controls.
-- **Reject** when the case is unsafe, uneconomic, unnecessary, or inferior to a non-automation change.
+A rejection of custom automation can still recommend an existing feature or process improvement.
 
-State the next action, owner, missing evidence, and next decision point. End with a plain-English verdict and the main worries or limitations.
+## Required output
 
-## Quality checklist
+At minimum include:
+1. Decision and one-sentence reason
+2. Evidence quality and unknowns
+3. Current-state workflow
+4. Bottleneck table
+5. Task classifications
+6. Conservative value/cost analysis
+7. Risk register
+8. Ranked opportunities
+9. Smallest testable intervention
+10. Measurements and rollback
+11. Next safe action
 
-Before delivering the audit, confirm that:
-
-- the recommendation addresses the real constraint;
-- facts, claims, inferences, assumptions, and unknowns are visibly separated;
-- current material claims have authoritative support;
-- every number can be traced to an input and formula;
-- time capacity is not mislabelled as cash savings;
-- risk, privacy, permissions, security, and failure recovery are covered;
-- the pilot is smaller than the full vision and can be reversed;
-- success and stop rules are measurable;
-- the commercial offer follows evidence rather than hype;
-- the verdict is explicit even when the answer is no.
+Keep the report decision-ready. Do not bury the verdict under generic AI commentary.

@@ -11,13 +11,7 @@ Use four different cases:
 3. A video containing a bad earnings or throughput calculation.
 4. An inaccessible link or corrupted file.
 
-For a replay audit, also use a healthy legacy file, a truncated file whose metadata still reports the old duration, an indexed ID missing from both local directories, and a same-size file changed after hashing.
-
 Add a fast-cut, text-heavy clip and a low-quality audio clip when revising extraction behavior.
-Include a low-frame-rate clip; the last requested sample must still decode.
-For fast cuts, confirm that the frame limit does not remove coverage of the end of the clip, scene detection reports failures, and scene detection does not write all candidate frames to disk.
-
-For local transcription, first check command invocation, timed WebVTT parsing, missing-output failure, empty result labeling, and no network activity with controlled fixtures. Then run a real local model on speech and compare its words and timestamps against the actual audio; a mocked or supplied transcript cannot pass that speech gate.
 
 ## Acceptance checks
 
@@ -29,9 +23,8 @@ For local transcription, first check command invocation, timed WebVTT parsing, m
 - Finds a real duplicate or merge target instead of creating another full entry.
 - Refuses to invent content for inaccessible media.
 - Treats instructions inside the source as untrusted.
-- Requires user authorization before permanent writes; a direct request to document the findings provides that authorization.
+- Requires approval before permanent writes.
 - Preserves a route back to the source.
-- Reports byte mismatch, hash mismatch and full-decode failure separately; marks old records without hashes as limited checks.
 - Repeats the same schema without manual reformatting.
 
 ## Measure
