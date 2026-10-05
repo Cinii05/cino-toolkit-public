@@ -1,7 +1,7 @@
 {
   "schema": "cino.toolkit.public-candidate/v1",
   "version": "1.3.0",
-  "source_r2_head": "39628f507a0a368d308f4686cec63e7534ee36aa",
+  "source_r2_head": "e9b130f1670a148975845bf5b36243bfba9a24cb",
   "source_candidate": "cino-toolkit-r2-candidate-2026-10-05-rc1",
   "skill_count": 8,
   "skills": [
@@ -14,7 +14,7 @@
     "tmc-ui-master",
     "unslop"
   ],
-  "preinstall_acceptance": "93/93 PASS",
+  "preinstall_acceptance": "99/99 PASS",
   "independent_review": "CONTINUE_TO_CANDIDATE / 0 findings",
   "real_pilot": "CONTINUE bounded deterministic diff pilot",
   "critical_review": "CONTINUE bounded evidence-only pilot",
@@ -133,8 +133,8 @@
     },
     {
       "path": "skills/cino-automation-opportunity-audit/SKILL.md",
-      "sha256": "2a52eb7f128e6ec3359db1b12fe239e342ff148dda26358141766ff3431883d4",
-      "size_bytes": 8242
+      "sha256": "82d590a4e942c9af3097c853f5759750ee316247e86cba8909d95d70053a6365",
+      "size_bytes": 8463
     },
     {
       "path": "skills/cino-critical-review/agents/openai.yaml",

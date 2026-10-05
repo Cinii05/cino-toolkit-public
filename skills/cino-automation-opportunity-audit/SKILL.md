@@ -18,12 +18,12 @@ Diagnose the workflow before recommending technology. The objective is not to fi
 
 ## Required references
 
-Read discovery-framework.md to structure evidence collection and the current-state workflow.
-Read opportunity-scoring.md to classify tasks and rank opportunities without false precision.
-Read risk-and-boundaries.md before recommending any automation that writes, sends, approves, pays, deletes, discloses, or changes consequential state.
-Read report-contract.md for the required audit output.
-Read routing-and-precedence.md when this skill overlaps another Cino Toolkit skill.
-Read acceptance-criteria.md only when validating or revising this skill itself.
+Read [discovery-framework.md](references/discovery-framework.md) to structure evidence collection and the current-state workflow.
+Read [opportunity-scoring.md](references/opportunity-scoring.md) to classify tasks and rank opportunities without false precision.
+Read [risk-and-boundaries.md](references/risk-and-boundaries.md) before recommending any automation that writes, sends, approves, pays, deletes, discloses, or changes consequential state.
+Read [report-contract.md](references/report-contract.md) for the required audit output.
+Read [routing-and-precedence.md](references/routing-and-precedence.md) when this skill overlaps another Cino Toolkit skill.
+Read [acceptance-criteria.md](references/acceptance-criteria.md) only when validating or revising this skill itself.
 
 ## Evidence labels
 
